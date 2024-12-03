@@ -32,7 +32,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="catalog.html">
+										<a href="#">
 											Products
 										</a>
 									</li>
@@ -191,142 +191,104 @@
 			</div>
 		</div>
 		<main class="page">
-			<section class="jumbotron">
-				<div class="jumbotron__container">
-					<div class="jumbotron__content">
-						<div class="jumbotron__top top-jumbotron">
-							<div class="flex flex-col gap-12">
-								<h1 class="display-large text-light-900">
-									Secure Payment. <br> Anytime. <br> Anywhere.
-								</h1>
-								<a href="#" class="sm:!flex !hidden jumbotron-button button button-secondary button-size-l justify-center">
-									<span>Explore</span>
-									<i>
-										<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M7 17L17 7M17 7H9M17 7V15" stroke="#0F161C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-										</svg>
-									</i>
-								</a>
-							</div>
-						</div>
-						<div class="jumbotron__bottom bottom-jumbotron flex sm:items-end sm:gap-4 gap-3 sm:justify-between sm:flex-row flex-col">
-							<div class="jumbotron__desc body-large text-light-900">
+
+			<div class="jumpscroll"></div>
+
+			<section class="contacts-form lg:py-20 md:py-16 py-10">
+				<div class="contacts-form__container">
+					<div class="contacts-form__content">
+						<div class="contacts-form__heading section-heading">
+							<h1 class="display-medium text-dark-800 mb-4">
+								Contact us</h1>
+							<div class="page-section__header-desc body-large text-dark-700">
 								<p>
-									SmarTap inlays are MasterCard certified and designed for easy integration into your wearable products — enabling seamless contactless payments and secure NFC solutions.
+									Fill out the form below, and our team will get back to you with the details you need.
 								</p>
 							</div>
-							<a href="#" class="sm:!hidden w-full  button button-secondary button-size-l justify-center">
-								<span>Explore</span>
-								<i>
-									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M7 17L17 7M17 7H9M17 7V15" stroke="#0F161C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-									</svg>
-								</i>
-							</a>
-							<button type="button" data-goto=".jumpscroll" class="sm:block hidden scroll-down-btn body-medium inline-flex items-center gap-1.5 text-light-900">
-								<span>
-									scroll down
-								</span>
-								<i>
-									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M10.51 3.29757L12.4899 3.29757V16.874L18.5711 10.7929L19.9853 12.2071L11.5 20.6924L3.01471 12.2071L4.42893 10.7929L10.51 16.874L10.51 3.29757Z" fill="currentColor" />
-									</svg>
-								</i>
-							</button>
 						</div>
-					</div>
-				</div>
-				<div class="jumbotron__background">
-					<img src="img/jumbotron/hero-bg.webp" alt="IMAGE HERO BG">
-				</div>
-			</section>
-			<!-- /.jumbotron -->
-			<div class="jumpscroll"></div>
-			<section class="benefits lg:lg:py-20 md:py-16 py-10">
-				<div class="benefits__container">
-					<div class="benefits__content">
-						<div class="benefits__heading section-heading flex items-start gap-4 justify-between">
-							<div class="section-heading__left flex flex-col gap-2">
-								<span>Benefits</span>
-								<h2 class="headline-large">
-									Why choose SmarTap?
-								</h2>
+						<div class="contacts-form__body grid lg:grid-cols-2 lg:gap-5 gap-14">
+							<div class="contact-form">
+								<form action="#" class="form" method="POST">
+									<div class="form__row grid sm:grid-cols-2 gap-4">
+										<div class="form__col">
+											<label class="form-label" for="contactName">Full Name</label>
+											<input autocomplete="off" type="text" name="contactName" id="contactName" placeholder="Full Name" class="input">
+										</div>
+										<div class="form__col">
+											<label class="form-label" for="contactCompany">Company</label>
+											<input autocomplete="off" type="text" name="contactCompany" id="contactCompany" placeholder="Ex. Google" class="input">
+										</div>
+									</div>
+									<div class="form__row">
+										<div class="form__line">
+											<label class="form-label" for="contactEmail">Email</label>
+											<input autocomplete="off" type="text" name="contactEmail" id="contactEmail" placeholder="Ex. CEO" class="input">
+										</div>
+									</div>
+									<div class="form__row">
+										<div class="form__line">
+											<label class="form-label" for="contactMessage">Message</label>
+											<textarea autocomplete="off" name="contactMessage" placeholder="" id="contactMessage" class="input"></textarea>
+										</div>
+									</div>
+									<div class="form__row">
+										<div class="checkbox">
+											<input id="c_1" class="checkbox__input" type="checkbox" value="1" name="form[]">
+											<label for="c_1" class="checkbox__label">
+												<p class="checkbox__text">I accept the <a href="#">Terms and Conditions.</a></p>
+											</label>
+										</div>
+									</div>
+									<div class="form__row">
+										<button type="submit" class="button button-size-l button-primary w-full justify-center">Submit</button>
+									</div>
+								</form>
 							</div>
-						</div>
-						<div class="benefits__body">
-							<div class="benefits__list">
-								<div class="benefits__item item-benefit">
-									<div class="item-benefit__body">
-										<div class="item-benefit__header">
-											<span class="headline-medium text-dark-600">01</span>
-											<div class="item-benefit__icon">
-												<img src="img/benefits/01.webp" alt="Icon Item Benefit">
-											</div>
+
+							<div class="contact-info grid sm:grid-cols-2 lg:gap-5 sm:gap-4 gap-8">
+								<div class="contact-info__column column">
+									<div class="column__body">
+										<div class="column__icon">
+											<svg width="34" height="28" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+												<path d="M3.66667 4.00001L13.8461 11.6871L13.8495 11.6899C14.9797 12.5188 15.5452 12.9335 16.1646 13.0937C16.712 13.2353 17.2875 13.2353 17.835 13.0937C18.4549 12.9334 19.022 12.5175 20.1543 11.6871C20.1543 11.6871 26.6835 6.67658 30.3333 4.00001M2 20.3337V7.667C2 5.80016 2 4.86604 2.36331 4.15301C2.68289 3.5258 3.19245 3.01623 3.81966 2.69666C4.5327 2.33334 5.46682 2.33334 7.33366 2.33334H26.667C28.5338 2.33334 29.466 2.33334 30.179 2.69666C30.8062 3.01623 31.3175 3.5258 31.637 4.15301C32 4.86535 32 5.79833 32 7.66153V20.3393C32 22.2025 32 23.1341 31.637 23.8465C31.3175 24.4737 30.8062 24.9841 30.179 25.3037C29.4667 25.6667 28.535 25.6667 26.6718 25.6667H7.32818C5.46499 25.6667 4.532 25.6667 3.81966 25.3037C3.19245 24.9841 2.68289 24.4737 2.36331 23.8465C2 23.1334 2 22.2005 2 20.3337Z" stroke="#0F161C" stroke-width="3.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+											</svg>
 										</div>
-										<div class="item-benefit__content">
-											<div class="item-benefit__text">
-												<h5 class="headline-medium text-dark-800 mb-4">
-													Secure and Certified
-												</h5>
-												<div class="body-medium text-dark-600">
-													<p>
-														Showcase flexibility with a list of wearable types (rings, bracelets, key fobs).
-													</p>
-												</div>
-											</div>
-											<div class="item-benefit__icon--pc">
-												<img src="img/benefits/01.webp" alt="Icon Item Benefit">
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="benefits__item item-benefit">
-									<div class="item-benefit__body">
-										<div class="item-benefit__header">
-											<span class="headline-medium text-dark-600">02</span>
-											<div class="item-benefit__icon">
-												<img src="img/benefits/02.webp" alt="Icon Item Benefit">
-											</div>
-										</div>
-										<div class="item-benefit__content">
-											<div class="item-benefit__text">
-												<h5 class="headline-medium text-dark-800 mb-4">
-													Versatile Application
-												</h5>
-												<div class="body-medium text-dark-600">
-													<p>
-														Showcase flexibility with a list of wearable types (rings, bracelets, key fobs).
-													</p>
-												</div>
-											</div>
-											<div class="item-benefit__icon--pc">
-												<img src="img/benefits/02.webp" alt="Icon Item Benefit">
-											</div>
+										<div class="column__list">
+											<ul>
+												<li>
+													<span>Sales Email</span>
+													<a href="mailto:sales@usmartcards.com">sales@usmartcards.com</a>
+												</li>
+												<li>
+													<span>Finance Email</span>
+													<a href="mailto:finance@usmartcards.com">finance@usmartcards.com</a>
+												</li>
+												<li>
+													<span>Customer Service</span>
+													<a href="mailto:enquiries@usmartcards.com">enquiries@usmartcards.com</a>
+												</li>
+											</ul>
 										</div>
 									</div>
 								</div>
-								<div class="benefits__item item-benefit">
-									<div class="item-benefit__body">
-										<div class="item-benefit__header">
-											<span class="headline-medium text-dark-600">03</span>
-											<div class="item-benefit__icon">
-												<img src="img/benefits/03.webp" alt="Icon Item Benefit">
-											</div>
+								<div class="contact-info__column column">
+									<div class="column__body">
+										<div class="column__icon">
+											<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+												<path d="M12.8374 4.09536C12.3312 2.82984 11.1055 2 9.74251 2H5.1579C3.41384 2 2 3.4135 2 5.15755C2 19.982 14.018 32 28.8424 32C30.5865 32 32 30.586 32 28.842L32.0008 24.2566C32.0008 22.8936 31.1712 21.6681 29.9056 21.1619L25.5115 19.4049C24.3748 18.9502 23.0805 19.1548 22.1399 19.9386L21.0059 20.8845C19.6814 21.9881 17.7327 21.9004 16.5137 20.6813L13.3204 17.4851C12.1013 16.266 12.0112 14.3189 13.1149 12.9945L14.0605 11.8605C14.8444 10.9199 15.0508 9.62527 14.5961 8.48849L12.8374 4.09536Z" stroke="#0F161C" stroke-width="3.33333" stroke-linecap="round" stroke-linejoin="round"></path>
+											</svg>
 										</div>
-										<div class="item-benefit__content">
-											<div class="item-benefit__text">
-												<h5 class="headline-medium text-dark-800 mb-4">
-													Ready to Deployment
-												</h5>
-												<div class="body-medium text-dark-600">
-													<p>
-														Showcase flexibility with a list of wearable types (rings, bracelets, key fobs).
-													</p>
-												</div>
-											</div>
-											<div class="item-benefit__icon--pc">
-												<img src="img/benefits/03.webp" alt="Icon Item Benefit">
-											</div>
+										<div class="column__list">
+											<ul>
+												<li>
+													<span>UK Office</span>
+													<a href="tel:+44(0)333 700 0078">+44(0)333 700 0078</a>
+												</li>
+												<li>
+													<span>US Office</span>
+													<a href="tel:+1-800-810-4959">+1-800-810-4959</a>
+												</li>
+											</ul>
 										</div>
 									</div>
 								</div>
@@ -335,271 +297,88 @@
 					</div>
 				</div>
 			</section>
-			<!-- /.benefits -->
-			<section class="how-it-works lg:lg:py-20 md:py-16 py-10">
-				<div class="how-it-works__container">
-					<div class="how-it-works__content">
-						<div class="how-it-works__heading section-heading flex items-start gap-4 justify-between lg:mb-0">
-							<div class="section-heading__left flex flex-col gap-2 sticky top-5">
-								<span>How it Works</span>
-								<h2 class="headline-large">
-									Seamless SmarTap Integration Process
-								</h2>
-							</div>
-						</div>
-						<div class="how-it-works__body">
-							<div class="how-it-works__steps">
-								<div class="how-it-works__step step">
-									<div class="step__body">
-										<div class="step__num">01</div>
-										<div class="step__content">
-											<h5 class="headline-medium text-dark-800 mb-3">Select the Wearable</h5>
-											<p class="text-dark-600 body-medium">Choose from rings, bracelets, or key fobs to integrate SmarTap’s NFC inlays.</p>
-										</div>
-									</div>
-								</div>
-								<div class="how-it-works__step step">
-									<div class="step__body">
-										<div class="step__num">02</div>
-										<div class="step__content">
-											<h5 class="headline-medium text-dark-800 mb-3">Embed SmarTap Inlay</h5>
-											<p class="text-dark-600 body-medium">Easily embed the flexible, compact SmarTap inlay into your product design.Easily embed the flexible, compact SmarTap inlay into your product design.Easily embed the flexible, compact SmarTap inlay into your product design.</p>
-										</div>
-									</div>
-								</div>
-								<div class="how-it-works__step step">
-									<div class="step__body">
-										<div class="step__num">03</div>
-										<div class="step__content">
-											<h5 class="headline-medium text-dark-800 mb-3">Technical Specifications</h5>
-											<p class="text-dark-600 body-medium">The inlay is MasterCard-certified and provides secure NFC with EMV compatibility.</p>
-										</div>
-									</div>
-								</div>
-								<div class="how-it-works__step step">
-									<div class="step__body">
-										<div class="step__num">04</div>
-										<div class="step__content">
-											<h5 class="headline-medium text-dark-800 mb-3">Ready for Market</h5>
-											<p class="text-dark-600 body-medium">Once integrated, your wearables are market-ready with secure payment and NFC capabilities.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- /.how-it-works -->
+			<!-- /.contacts-form -->
+			<section class="map-section lg:py-20 md:py-16 py-10">
+				<div class="map-section__container">
+					<div class="map-section__content">
+						<div class="grid lg:grid-cols-2 gap-4">
+							<div class="map-section__map">
+								<iframe id="map" src="https://maps.google.com/maps?q=0,0&z=2&output=embed" width="600" style="border:0; width: 100%; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
 
-			<section class="promo-video lg:py-20 md:py-16 py-10">
-				<div class="promo-video__container">
-					<div class="promo-video__content">
-						<div class="promo-video__heading section-heading flex items-start gap-4 justify-between flex-wrap">
-							<div class="section-heading__left flex flex-col gap-2">
-								<span>Use Cases and Solutions</span>
-								<h2 class="headline-large">
-									Innovative Solutions <br> for Every Industry
-								</h2>
 							</div>
-							<div class="section-heading__right flex flex-col gap-3 items-start">
-								<div class="body-large text-dark-700">
-									<p>
-										SmarTap inlays are designed to seamlessly integrate into wearables, enabling secure NFC functionality across a wide range of industries.
-									</p>
-								</div>
-								<a href="#" class="button button-arrow-right button-size-l button-tinted">
-									<span>
-										Learn More
-									</span>
-									<i>
-										<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M5.5 12H19.5M19.5 12L13.5 6M19.5 12L13.5 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-										</svg>
-									</i>
-								</a>
-							</div>
-						</div>
-						<div class="promo-video__body">
-							<div class="video-container">
-								<video class="video-container__video object-cover" id="videoPromoCases">
-									<source src="img/videos/video-1.mp4" type="video/mp4">
-
-								</video>
-								<button class="video-container__control custom-play">
-									<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<g filter="url(#filter0_b_16534_3296)">
-											<rect width="80" height="80" rx="40" fill="white" />
-											<path d="M56.25 37.904C57.9167 38.8355 57.9167 41.1645 56.25 42.096L33.75 54.6721C32.0833 55.6037 30 54.4392 30 52.5761L30 27.4239C30 25.5608 32.0833 24.3963 33.75 25.3279L56.25 37.904Z" fill="#0F161C" />
-										</g>
-										<defs>
-											<filter id="filter0_b_16534_3296" x="-16" y="-16" width="112" height="112" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-												<feFlood flood-opacity="0" result="BackgroundImageFix" />
-												<feGaussianBlur in="BackgroundImageFix" stdDeviation="8" />
-												<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_16534_3296" />
-												<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_16534_3296" result="shape" />
-											</filter>
-										</defs>
-									</svg>
-								</button>
-							</div>
+							<div class="map-section__address">
+								<div data-spollers data-one-spoller class="spollers card-list-adress">
+									<details class="spollers__item card-address" data-address="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2942.3683232609505!2d-0.260415!3d51.6585555!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761676f6c1de7b%3A0x2136b7287d8fe8c!2sUniversal%20Smart%20Cards%20Limited!5e1!3m2!1sru!2spl!4v1733250582793!5m2!1sru!2spl">
+										<summary class="spollers__title">Head Office (UK)</summary>
+										<div class="spollers__body">
+											<div class="body-medium text-dark-600">
+												<p>
+													Universal Smart Cards Limited <br> Unit 9 Devonshire Business Park <br> 4 Chester Road <br> Borehamwood <br> Hertfordshire <br> WD6 1NA
+												</p>
+											</div>
+										</div>
+									</details>
 
 
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- /.promo-video -->
+									<details class="spollers__item card-address" data-address="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2807.6241317718946!2d-2.2863713999999997!3d53.705337899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487ba2ad76890029%3A0x8181da50fdcd01f2!2sUniversal%20Smart%20Cards%20Limited%20(Regional%20Office)!5e1!3m2!1sru!2spl!4v1733250648931!5m2!1sru!2spl">
+										<summary class="spollers__title">Regional Office (UK)</summary>
+										<div class="spollers__body">
+											<div class="body-medium text-dark-600">
+												<p>
+													Universal Smart Cards Limited <br>
+													Suites 302/303 <br>
+													Kingfisher Business Centre <br>
+													Burnley Road, Rawtenstall<br>
+													Lancashire<br>
+													BB4 8EQ<br>
+												</p>
+											</div>
+										</div>
+									</details>
 
-			<section class="why-us lg:py-20 md:py-16 py-10">
-				<div class="why-us__container">
-					<div class="why-us__content">
-						<div class="why-us__heading section-heading flex items-start gap-4 justify-between flex-wrap">
-							<div class="section-heading__left flex flex-col gap-2">
-								<span>why smartap</span>
-								<h2 class="headline-large">
-									Why SmarTap is ideal for OEMs
-								</h2>
-							</div>
-						</div>
-						<div class="why-us__body">
-							<div data-tabs class="tabs tabs-vertical">
-								<nav data-tabs-titles class="tabs__navigation">
-									<div class="tabs__title _tab-active">
-										<button type="button" class="tabs__title-button">Fast to Market</button>
-										<div class="tabs__title-content body-large text-dark-400">
-											<p>
-												Quickly bring innovative wearables to market with SmarTap’s streamlined integration process, saving time and resources.
-											</p>
+
+
+
+
+									<details class="spollers__item card-address" data-address="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3983.3968170157623!2d-117.2126537!3d32.8779276!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dc072e3436a8af%3A0x383e21293e889e21!2zNDQ0NSBFYXN0Z2F0ZSBNYWxsICMyMDAsIFNhbiBEaWVnbywgQ0EgOTIxMjEsINCh0KjQkA!5e1!3m2!1sru!2spl!4v1733250699788!5m2!1sru!2spl">
+										<summary class="spollers__title">Technical Centre (UK)</summary>
+										<div class="spollers__body">
+											<div class="body-medium text-dark-600">
+												<p>
+													Universal Smart Cards Limited <br> Unit 9 Devonshire Business Park<br>4 Chester Road<br>Borehamwood<br>Hertfordshire<br>WD6 1NA
+												</p>
+											</div>
 										</div>
-										<div class="tabs__title-image">
-											<img src="img/why-us/01.webp" alt="Image">
-										</div>
-									</div>
-									<div class="tabs__title">
-										<button type="button" class="tabs__title-button">Fully Certified</button>
-										<div class="tabs__title-content body-large text-dark-400">
-											<p>
-												Trust in SmarTap’s industry certifications, including MasterCard compliance, ensuring secure and globally accepted solutions.
-											</p>
-										</div>
-										<div class="tabs__title-image">
-											<img src="img/why-us/02.webp" alt="Image">
-										</div>
-									</div>
-									<div class="tabs__title">
-										<button type="button" class="tabs__title-button">Rigorously Tested</button>
-										<div class="tabs__title-content body-large text-dark-400">
-											<p>
-												Rely on proven quality with inlays that have undergone comprehensive environmental and durability testing to meet real-world demands.
-											</p>
-										</div>
-										<div class="tabs__title-image">
-											<img src="img/why-us/03.webp" alt="Image">
-										</div>
-									</div>
-								</nav>
-								<div data-tabs-body class="tabs__content">
-									<div class="tabs__body">
-										<div class="why-us-tabs__image">
-											<img src="img/why-us/01.webp" alt="Image Why US">
-										</div>
-									</div>
-									<div class="tabs__body">
-										<div class="why-us-tabs__image">
-											<img src="img/why-us/02.webp" alt="Image Why US">
-										</div>
-									</div>
-									<div class="tabs__body">
-										<div class="why-us-tabs__image">
-											<img src="img/why-us/03.webp" alt="Image Why US">
-										</div>
-									</div>
+									</details>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<!-- /.why-us -->
-
-
-			<section class="partners lg:py-20 md:py-16 py-10">
-				<div class="partners__container">
-					<div class="partners__content">
-						<div class="partners__heading mb-8">
-							<h2 class="headline-medium text-center">Our trusted Partners and Clients</h2>
-						</div>
-
-					</div>
-				</div>
-				<div class="partners__body">
-					<div class="partners-autoplay__slider swiper">
-						<div class="partners-autoplay__wrapper swiper-wrapper">
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/01.svg" alt="Partner Image">
-							</div>
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/02.svg" alt="Partner Image">
-							</div>
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/01.svg" alt="Partner Image">
-							</div>
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/02.svg" alt="Partner Image">
-							</div>
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/01.svg" alt="Partner Image">
-							</div>
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/02.svg" alt="Partner Image">
-							</div>
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/01.svg" alt="Partner Image">
-							</div>
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/02.svg" alt="Partner Image">
-							</div>
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/01.svg" alt="Partner Image">
-							</div>
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/02.svg" alt="Partner Image">
-							</div>
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/01.svg" alt="Partner Image">
-							</div>
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/02.svg" alt="Partner Image">
-							</div>
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/01.svg" alt="Partner Image">
-							</div>
-							<div class="partners-autoplay__slide swiper-slide">
-								<img src="img/clients/02.svg" alt="Partner Image">
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- /.partners -->
-
+			<!-- /.map-section -->
 			<section class="cta-section lg:py-20 md:py-16 py-0">
 				<div class="cta-section__container">
 					<div class="cta-section__content">
 						<div class="cta-section__left left-cta">
 							<h2 class="mb-5 headline-large text-light-900">
-								Transform Your Products with SmarTap Inlays
+								Want to experience our inlays firsthand?
 							</h2>
 							<div class="body-large text-light-900 mb-8">
 								<p>
-									Explore SmarTap Inlays today and discover how they can revolutionize your product lineup.
+									Request a demo kit or sample today to see how easily our inlays integrate into your wearables.
 								</p>
 							</div>
-							<a href="#" class="button button-secondary button-size-l justify-center sm:w-auto w-full">
-								<span>Explore Now</span>
+							<div class="flex items-center gap-4 sm:flex-row flex-col">
+								<a href="#" class="button button-secondary button-size-l justify-center sm:w-auto w-full">
+									<span>Request a Demo Kit</span>
 
-							</a>
+								</a>
+								<a href="#" class="button button-border button-size-l justify-center sm:w-auto w-full">
+									<span>Request Sample</span>
+
+								</a>
+							</div>
 						</div>
 						<div class="cta-section__right right-cta">
 							<div class="right-cta__image">
@@ -610,6 +389,72 @@
 				</div>
 			</section>
 			<!-- /.cta-section -->
+			<section class="faq lg:py-20 md:py-16 py-10">
+				<div class="faq__container">
+					<div class="faq__content grid lg:grid-cols-2 lg:gap-5">
+						<div class="faq__heading section-heading">
+							<h2 class="text-dark-800 headline-large">
+								Frequently Asked <br> Questions
+							</h2>
+						</div>
+						<div class="faq__body">
+							<div data-spollers class="faq-spollers spollers">
+								<details class="spollers__item">
+									<summary class="spollers__title">What wearables can SmarTap inlays be integrated into?</summary>
+									<div class="spollers__body">
+										<div class="body-medium text-dark-600">
+											<p>
+												SmarTap inlays are compatible with a wide range of wearables, including rings, bracelets, and key fobs, allowing for flexible NFC and contactless payment integration.
+											</p>
+										</div>
+									</div>
+								</details>
+								<details class="spollers__item">
+									<summary class="spollers__title"> Are SmarTap inlays MasterCard certified?</summary>
+									<div class="spollers__body">
+										<div class="body-medium text-dark-600">
+											<p>
+												Are SmarTap inlays MasterCard certified?
+											</p>
+										</div>
+									</div>
+								</details>
+								<details class="spollers__item">
+									<summary class="spollers__title"> How secure is the SmarTap inlay?</summary>
+									<div class="spollers__body">
+										<div class="body-medium text-dark-600">
+											<p>
+												How secure is the SmarTap inlay?
+											</p>
+										</div>
+									</div>
+								</details>
+								<details class="spollers__item">
+									<summary class="spollers__title">How quickly can SmarTap inlays be deployed?</summary>
+									<div class="spollers__body">
+										<div class="body-medium text-dark-600">
+											<p>
+												How quickly can SmarTap inlays be deployed?
+											</p>
+										</div>
+									</div>
+								</details>
+								<details class="spollers__item">
+									<summary class="spollers__title">Can I request a demo or sample?</summary>
+									<div class="spollers__body">
+										<div class="body-medium text-dark-600">
+											<p>
+												How quickly can SmarTap inlays be deployed?
+											</p>
+										</div>
+									</div>
+								</details>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /.faq -->
 		</main>
 		<footer class="footer ">
 
