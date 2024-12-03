@@ -3633,6 +3633,39 @@
         }));
     }
     document.addEventListener("DOMContentLoaded", (() => {
+        const table = document.querySelector(".section-compare-table");
+        if (!table) {
+            console.error("Таблица .section-compare-table не найдена.");
+            return;
+        }
+        const updateHandlers = () => {
+            const productTables = Array.from(table.querySelectorAll(".product-in-table"));
+            productTables.forEach((product => {
+                const closeButton = product.querySelector(".button-close");
+                if (closeButton) {
+                    closeButton.replaceWith(closeButton.cloneNode(true));
+                    const newButton = product.querySelector(".button-close");
+                    newButton.addEventListener("click", (() => {
+                        const thElement = product.closest("th");
+                        const columnIndex = Array.from(thElement.parentElement.children).indexOf(thElement);
+                        handleProductRemove(columnIndex);
+                    }));
+                }
+            }));
+        };
+        const handleProductRemove = columnIndex => {
+            const headers = table.querySelectorAll("thead th");
+            if (headers[columnIndex]) headers[columnIndex].remove();
+            const rows = table.querySelectorAll("tbody tr");
+            rows.forEach((row => {
+                const cells = row.querySelectorAll("td");
+                if (cells[columnIndex]) cells[columnIndex].remove();
+            }));
+            updateHandlers();
+        };
+        updateHandlers();
+    }));
+    document.addEventListener("DOMContentLoaded", (() => {
         initializeVideoControls();
     }));
     window["FLS"] = true;
