@@ -191,104 +191,383 @@
 			</div>
 		</div>
 		<main class="page">
-
-			<div class="jumpscroll"></div>
-
-			<section class="contacts-form lg:py-20 md:py-16 py-10">
-				<div class="contacts-form__container">
-					<div class="contacts-form__content">
-						<div class="contacts-form__heading section-heading">
-							<h1 class="display-medium text-dark-800 mb-4">
-								Contact us</h1>
-							<div class="page-section__header-desc body-large text-dark-700">
-								<p>
-									Fill out the form below, and our team will get back to you with the details you need.
-								</p>
-							</div>
+			<section class="product-info pt-8 lg:pb-20 md:pb-16 pb-8">
+				<div class="product-info__container">
+					<div class="product-info__content">
+						<div class="flex mb-5">
+							<a href="#" class="button button-arrow-left button-size-l button-tinted">
+								<span>
+									Back to All Products
+								</span>
+								<i>
+									<svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+										<path d="M12.8333 6H1.16663M1.16663 6L6.16663 11M1.16663 6L6.16663 1" stroke="#0B98DE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+									</svg>
+								</i>
+							</a>
 						</div>
-						<div class="contacts-form__body grid lg:grid-cols-2 lg:gap-5 gap-14">
-							<div class="contact-form">
-								<form action="#" class="form" method="POST">
-									<div class="form__row grid sm:grid-cols-2 gap-4">
-										<div class="form__col">
-											<label class="form-label" for="contactName">Full Name</label>
-											<input autocomplete="off" type="text" name="contactName" id="contactName" placeholder="Full Name" class="input">
+						<div class="product-info__body">
+							<div class="lg:grid lg:grid-cols-2 gap-4">
+								<div class="product-info__images lg:mb-0 mb-4">
+									<div class="product-info__slider swiper sm:mb-2 mb-1">
+										<div class="product-info__wrapper swiper-wrapper">
+											<div class="product-info__slide swiper-slide slide-image">
+												<img src="img/product-info/01.webp" alt="Image">
+											</div>
+											<div class="product-info__slide swiper-slide slide-image">
+												<img src="img/product-info/02.webp" alt="Image">
+											</div>
+											<div class="product-info__slide swiper-slide slide-image">
+												<img src="img/product-info/03.webp" alt="Image">
+											</div>
+											<div class="product-info__slide swiper-slide slide-image">
+												<img src="img/product-info/04.webp" alt="Image">
+											</div>
+											<div class="product-info__slide swiper-slide slide-image">
+												<img src="img/product-info/05.webp" alt="Image">
+											</div>
 										</div>
-										<div class="form__col">
-											<label class="form-label" for="contactCompany">Company</label>
-											<input autocomplete="off" type="text" name="contactCompany" id="contactCompany" placeholder="Ex. Google" class="input">
+										<div class="slider-navigation">
+											<button type="button" class="swiper-button-prev slider-button-two">
+												<svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+													<path d="M15 7H1M1 7L7 13M1 7L7 1" stroke="#0F161C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+												</svg>
+											</button>
+											<button type="button" class="swiper-button-next slider-button-two">
+												<svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+													<path d="M1 7H15M15 7L9 1M15 7L9 13" stroke="#0F161C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+												</svg>
+											</button>
 										</div>
 									</div>
-									<div class="form__row">
-										<div class="form__line">
-											<label class="form-label" for="contactEmail">Email</label>
-											<input autocomplete="off" type="text" name="contactEmail" id="contactEmail" placeholder="Ex. CEO" class="input">
-										</div>
-									</div>
-									<div class="form__row">
-										<div class="form__line">
-											<label class="form-label" for="contactMessage">Message</label>
-											<textarea autocomplete="off" name="contactMessage" placeholder="" id="contactMessage" class="input"></textarea>
-										</div>
-									</div>
-									<div class="form__row">
-										<div class="checkbox">
-											<input id="c_1" class="checkbox__input" type="checkbox" value="1" name="form[]">
-											<label for="c_1" class="checkbox__label">
-												<p class="checkbox__text">I accept the <a href="#">Terms and Conditions.</a></p>
-											</label>
-										</div>
-									</div>
-									<div class="form__row">
-										<button type="submit" class="button button-size-l button-primary w-full justify-center">Submit</button>
-									</div>
-								</form>
-							</div>
-
-							<div class="contact-info grid sm:grid-cols-2 lg:gap-5 sm:gap-4 gap-8">
-								<div class="contact-info__column column">
-									<div class="column__body">
-										<div class="column__icon">
-											<svg width="34" height="28" viewBox="0 0 34 28" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-												<path d="M3.66667 4.00001L13.8461 11.6871L13.8495 11.6899C14.9797 12.5188 15.5452 12.9335 16.1646 13.0937C16.712 13.2353 17.2875 13.2353 17.835 13.0937C18.4549 12.9334 19.022 12.5175 20.1543 11.6871C20.1543 11.6871 26.6835 6.67658 30.3333 4.00001M2 20.3337V7.667C2 5.80016 2 4.86604 2.36331 4.15301C2.68289 3.5258 3.19245 3.01623 3.81966 2.69666C4.5327 2.33334 5.46682 2.33334 7.33366 2.33334H26.667C28.5338 2.33334 29.466 2.33334 30.179 2.69666C30.8062 3.01623 31.3175 3.5258 31.637 4.15301C32 4.86535 32 5.79833 32 7.66153V20.3393C32 22.2025 32 23.1341 31.637 23.8465C31.3175 24.4737 30.8062 24.9841 30.179 25.3037C29.4667 25.6667 28.535 25.6667 26.6718 25.6667H7.32818C5.46499 25.6667 4.532 25.6667 3.81966 25.3037C3.19245 24.9841 2.68289 24.4737 2.36331 23.8465C2 23.1334 2 22.2005 2 20.3337Z" stroke="#0F161C" stroke-width="3.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-											</svg>
-										</div>
-										<div class="column__list">
-											<ul>
-												<li>
-													<span>Sales Email</span>
-													<a href="mailto:sales@usmartcards.com">sales@usmartcards.com</a>
-												</li>
-												<li>
-													<span>Finance Email</span>
-													<a href="mailto:finance@usmartcards.com">finance@usmartcards.com</a>
-												</li>
-												<li>
-													<span>Customer Service</span>
-													<a href="mailto:enquiries@usmartcards.com">enquiries@usmartcards.com</a>
-												</li>
-											</ul>
+									<div class="product-info-thumb__slider swiper">
+										<div class="product-info-thumb__wrapper swiper-wrapper">
+											<div class="product-info-thumb__slide swiper-slide slide">
+												<img src="img/product-info/01.webp" alt="Image">
+											</div>
+											<div class="product-info-thumb__slide swiper-slide slide">
+												<img src="img/product-info/02.webp" alt="Image">
+											</div>
+											<div class="product-info-thumb__slide swiper-slide slide">
+												<img src="img/product-info/03.webp" alt="Image">
+											</div>
+											<div class="product-info-thumb__slide swiper-slide slide">
+												<img src="img/product-info/04.webp" alt="Image">
+											</div>
+											<div class="product-info-thumb__slide swiper-slide slide">
+												<img src="img/product-info/05.webp" alt="Image">
+											</div>
 										</div>
 									</div>
 								</div>
-								<div class="contact-info__column column">
-									<div class="column__body">
-										<div class="column__icon">
-											<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-												<path d="M12.8374 4.09536C12.3312 2.82984 11.1055 2 9.74251 2H5.1579C3.41384 2 2 3.4135 2 5.15755C2 19.982 14.018 32 28.8424 32C30.5865 32 32 30.586 32 28.842L32.0008 24.2566C32.0008 22.8936 31.1712 21.6681 29.9056 21.1619L25.5115 19.4049C24.3748 18.9502 23.0805 19.1548 22.1399 19.9386L21.0059 20.8845C19.6814 21.9881 17.7327 21.9004 16.5137 20.6813L13.3204 17.4851C12.1013 16.266 12.0112 14.3189 13.1149 12.9945L14.0605 11.8605C14.8444 10.9199 15.0508 9.62527 14.5961 8.48849L12.8374 4.09536Z" stroke="#0F161C" stroke-width="3.33333" stroke-linecap="round" stroke-linejoin="round"></path>
-											</svg>
+
+								<div class="product-info__text info-text">
+									<div class="relative sm:mb-8 mb-5">
+										<div class="flex flex-col gap-2 mb-4">
+											<span class="sm:text-base text-sm font-semibold text-brand-main inline-block">RW-I-GENUS</span>
+											<h1 class="headline-large text-dark-800">Genus Inlay</h1>
+											<div class="body-medium text-dark-700">
+												<p>
+													A small inlay designed for compact wearables like key fobs and beads on bracelets. Perfect for smaller wearable products, offering flexibility in design while maintaining strong NFC capabilities. Provides excellent read range (3-4 cm) and includes the Infineon SLJ37 chip, ensuring high security in NFC and payment use.
+												</p>
+											</div>
 										</div>
-										<div class="column__list">
-											<ul>
-												<li>
-													<span>UK Office</span>
-													<a href="tel:+44(0)333 700 0078">+44(0)333 700 0078</a>
-												</li>
-												<li>
-													<span>US Office</span>
-													<a href="tel:+1-800-810-4959">+1-800-810-4959</a>
-												</li>
-											</ul>
+
+										<div class="info-text-reviews mb-4">
+
+										</div>
+
+										<div class="info-text-actions flex items-center gap-2 justify-between">
+											<a href="#" class="button button-size-l button-primary flex-1">
+												<span>
+													Contact Us for price
+												</span>
+											</a>
+											<a href="#" class="button button-size-l button-tinted flex-1">
+												<span>
+													Add to Comparison list
+												</span>
+											</a>
+										</div>
+
+
+
+									</div>
+
+									<div data-tabs class="info-text-tabs tabs-type-two">
+										<nav data-tabs-titles class="info-text-tabs__navigation tabs__navigation">
+											<button type="button" class="info-text-tabs__title tabs__title _tab-active">
+												<i>
+													<svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+														<path d="M5 15H11M5 12H11M9.00038 1.00087C8.90484 1 8.79738 1 8.67471 1H4.2002C3.08009 1 2.51962 1 2.0918 1.21799C1.71547 1.40973 1.40973 1.71547 1.21799 2.0918C1 2.51962 1 3.08009 1 4.2002V15.8002C1 16.9203 1 17.4801 1.21799 17.9079C1.40973 18.2842 1.71547 18.5905 2.0918 18.7822C2.51921 19 3.079 19 4.19694 19L11.8031 19C12.921 19 13.48 19 13.9074 18.7822C14.2837 18.5905 14.5905 18.2842 14.7822 17.9079C15 17.4805 15 16.9215 15 15.8036V7.32568C15 7.20302 14.9999 7.09553 14.999 7M9.00038 1.00087C9.28583 1.00348 9.46572 1.01407 9.63818 1.05547C9.84225 1.10446 10.0379 1.18526 10.2168 1.29492C10.4186 1.41857 10.5918 1.59181 10.9375 1.9375L14.063 5.06298C14.4089 5.40889 14.5809 5.58136 14.7046 5.78319C14.8142 5.96214 14.8953 6.15726 14.9443 6.36133C14.9857 6.53379 14.9964 6.71454 14.999 7M9.00038 1.00087L9 3.80021C9 4.92031 9 5.48015 9.21799 5.90797C9.40973 6.2843 9.71547 6.59048 10.0918 6.78223C10.5192 7 11.079 7 12.1969 7H14.999" stroke="#0B98DE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+													</svg>
+												</i>
+												<span>Specifications</span>
+											</button>
+											<button type="button" class="info-text-tabs__title tabs__title">
+												<i>
+													<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+														<path d="M1.33496 9.33677C1.02171 9.04709 1.19187 8.52339 1.61557 8.47316L7.61914 7.76107C7.79182 7.74059 7.94181 7.63215 8.01465 7.47425L10.5469 1.98446C10.7256 1.59703 11.2764 1.59695 11.4551 1.98439L13.9873 7.47413C14.0601 7.63204 14.2092 7.74077 14.3818 7.76124L20.3857 8.47316C20.8094 8.52339 20.9791 9.04724 20.6659 9.33693L16.2278 13.4419C16.1001 13.56 16.0433 13.7357 16.0771 13.9063L17.255 19.8359C17.3382 20.2544 16.8928 20.5787 16.5205 20.3703L11.2451 17.4166C11.0934 17.3317 10.9091 17.3321 10.7573 17.417L5.48144 20.3695C5.10913 20.5779 4.66294 20.2544 4.74609 19.8359L5.92414 13.9066C5.95803 13.7361 5.90134 13.5599 5.77367 13.4419L1.33496 9.33677Z" stroke="#0F161C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+													</svg>
+												</i>
+												<span>Reviews</span>
+											</button>
+
+										</nav>
+										<div data-tabs-body class="info-text-tabs__content tabs__content">
+											<div class="info-text-tabs__body tabs__body">
+												<div class="flex flex-col gap-5">
+													<div class="list-characteristics">
+														<ul>
+															<li>
+																<p>Part Number</p>
+																<span>I-STAP-IFXGENUS 1.3 /
+																	I-STAP-NXPGENUS 1.4</span>
+															</li>
+															<li>
+																<p>Dimensions</p>
+																<span>13mm x 17.5mm x 0.77mm</span>
+															</li>
+															<li>
+																<p>Max Thickness</p>
+																<span>0.77mm</span>
+															</li>
+
+															<li>
+																<p>Weight</p>
+																<span>0.22g</span>
+															</li>
+															<li>
+																<p>Operating
+																	Temperature</p>
+																<span>-20ºC to +80ºC</span>
+															</li>
+															<li>
+																<p>Storage Temperature</p>
+																<span>23ºC ±3ºC</span>
+															</li>
+															<li>
+																<p>Storage
+																	Duration</p>
+																<span>12 months from delivery date</span>
+															</li>
+															<li>
+																<p>Interface</p>
+																<span>ISO14443</span>
+															</li>
+															<li>
+																<p>Environmental
+																	Compliance</p>
+																<span>RoHS, China RoHS</span>
+															</li>
+															<li>
+																<p>Mastercard
+																	Certification</p>
+																<span>CLOAUSCA230202-
+																	230714(a) /
+																	CLOAUSCA230205-
+																	230714(a)</span>
+															</li>
+															<li>
+																<p>Compatible with </p>
+																<span>MIFARE Classic 1k systems</span>
+															</li>
+														</ul>
+													</div>
+
+
+													<div class="files-downloads">
+														<div class="file-download">
+															<div class="file-download__left">
+																<div class="flex items-center gap-3">
+																	<div>
+																		<img src="img/icons/icon-pdf.webp" alt="Image">
+																	</div>
+																	<div class="flex flex-col gap-1">
+																		<p class="text-dark-800 label-large line-clamp-2">SmarTap Datasheet PDF</p>
+																		<span class="text-dark-600 body-small">10 MB</span>
+																	</div>
+																</div>
+															</div>
+															<div class="file-download__right">
+																<a href="#">
+																	<span>Download</span>
+																	<i>
+																		<svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+																			<path d="M1 19H13M7 1V15M7 15L12 10M7 15L2 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+																		</svg>
+																	</i>
+																</a>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- /.flies-download -->
+											</div>
+											<div class="info-text-tabs__body tabs__body">
+												REVIEWS
+
+												<div class="reviews-products mb-5">
+
+												</div>
+
+												<div class="flex items-center gap-4 flex-wrap">
+													<a href="#" class="button button-size-m button-primary">
+														<span>
+															Write a Review
+														</span>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /.product-info -->
+			<section class="other-products lg:py-20 md:py-16 py-10">
+				<div class="other-products__container">
+					<div class="other-products__content">
+						<div class="other-products__heading section-heading flex items-center gap-4 flex-wrap justify-between">
+							<div class="section-heading__left">
+								<h2 class="headline-large text-dark-800">
+									Explore other products
+								</h2>
+							</div>
+							<div class="section-heading__right">
+								<div class="slider-navigation sm:flex hidden">
+									<button type="button" class="swiper-button-prev slider-button-one">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15" fill="none">
+											<path d="M15 7.5H1M1 7.5L7 13.5M1 7.5L7 1.5" stroke="#0B98DE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+										</svg>
+									</button>
+									<button type="button" class="swiper-button-next slider-button-one">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15" fill="none">
+											<path d="M1 7.5H15M15 7.5L9 1.5M15 7.5L9 13.5" stroke="#0B98DE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="other-products__body">
+							<div class="other-products__slider swiper">
+								<div class="other-products__wrapper swiper-wrapper">
+									<div class="other-products__slide swiper-slide">
+										<div class="product-item">
+											<div class="product-item__body">
+												<div class="product-item__header">
+													<div class="section-heading">
+														<div class="section-heading__left">
+
+															<span class="mb-2 inline-block">
+																RW-I-ALPHA
+															</span>
+															<a href="#" class="block headline-medium text-dark-800">
+																Alpha Inlay
+
+															</a>
+
+														</div>
+
+													</div>
+												</div>
+												<div class="product-item__content">
+													<a href="#" class="product-item__image">
+														<img src="img/products/01.webp" alt="Image Product">
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="other-products__slide swiper-slide">
+										<div class="product-item">
+											<div class="product-item__body">
+												<div class="product-item__header">
+													<div class="section-heading">
+														<div class="section-heading__left">
+
+															<span class="mb-2 inline-block">
+																RW-I-GENUS
+															</span>
+															<a href="#" class="block headline-medium text-dark-800">
+																Genus Inlay
+
+															</a>
+
+														</div>
+
+													</div>
+												</div>
+												<div class="product-item__content">
+													<a href="#" class="product-item__image">
+														<img src="img/products/02.webp" alt="Image Product">
+													</a>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="other-products__slide swiper-slide">
+										<div class="product-item">
+											<div class="product-item__body">
+												<div class="product-item__header">
+													<div class="section-heading">
+														<div class="section-heading__left">
+
+															<span class="mb-2 inline-block">
+																I-STAP-IFX-HALO
+															</span>
+															<a href="#" class="block headline-medium text-dark-800">
+																Halo Inlay
+
+															</a>
+
+														</div>
+
+													</div>
+												</div>
+												<div class="product-item__content">
+													<a href="#" class="product-item__image">
+														<img src="img/products/03.webp" alt="Image Product">
+													</a>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="other-products__slide swiper-slide">
+										<div class="product-item">
+											<div class="product-item__body">
+												<div class="product-item__header">
+													<div class="section-heading">
+														<div class="section-heading__left">
+
+															<span class="mb-2 inline-block">
+																I-STAP-IFX-HALO
+															</span>
+															<a href="#" class="block headline-medium text-dark-800">
+																Halo Inlay
+
+															</a>
+
+														</div>
+
+													</div>
+												</div>
+												<div class="product-item__content">
+													<a href="#" class="product-item__image">
+														<img src="img/products/03.webp" alt="Image Product">
+													</a>
+												</div>
+
+											</div>
 										</div>
 									</div>
 								</div>
@@ -297,88 +576,23 @@
 					</div>
 				</div>
 			</section>
-			<!-- /.contacts-form -->
-			<section class="map-section lg:py-20 md:py-16 py-10">
-				<div class="map-section__container">
-					<div class="map-section__content">
-						<div class="grid lg:grid-cols-2 gap-4">
-							<div class="map-section__map">
-								<iframe id="map" src="https://maps.google.com/maps?q=0,0&z=2&output=embed" width="600" style="border:0; width: 100%; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
-
-							</div>
-							<div class="map-section__address">
-								<div data-spollers data-one-spoller class="spollers card-list-adress">
-									<details class="spollers__item card-address" data-address="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2942.3683232609505!2d-0.260415!3d51.6585555!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761676f6c1de7b%3A0x2136b7287d8fe8c!2sUniversal%20Smart%20Cards%20Limited!5e1!3m2!1sru!2spl!4v1733250582793!5m2!1sru!2spl">
-										<summary class="spollers__title">Head Office (UK)</summary>
-										<div class="spollers__body">
-											<div class="body-medium text-dark-600">
-												<p>
-													Universal Smart Cards Limited <br> Unit 9 Devonshire Business Park <br> 4 Chester Road <br> Borehamwood <br> Hertfordshire <br> WD6 1NA
-												</p>
-											</div>
-										</div>
-									</details>
-
-
-									<details class="spollers__item card-address" data-address="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2807.6241317718946!2d-2.2863713999999997!3d53.705337899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487ba2ad76890029%3A0x8181da50fdcd01f2!2sUniversal%20Smart%20Cards%20Limited%20(Regional%20Office)!5e1!3m2!1sru!2spl!4v1733250648931!5m2!1sru!2spl">
-										<summary class="spollers__title">Regional Office (UK)</summary>
-										<div class="spollers__body">
-											<div class="body-medium text-dark-600">
-												<p>
-													Universal Smart Cards Limited <br>
-													Suites 302/303 <br>
-													Kingfisher Business Centre <br>
-													Burnley Road, Rawtenstall<br>
-													Lancashire<br>
-													BB4 8EQ<br>
-												</p>
-											</div>
-										</div>
-									</details>
-
-
-
-
-
-									<details class="spollers__item card-address" data-address="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3983.3968170157623!2d-117.2126537!3d32.8779276!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dc072e3436a8af%3A0x383e21293e889e21!2zNDQ0NSBFYXN0Z2F0ZSBNYWxsICMyMDAsIFNhbiBEaWVnbywgQ0EgOTIxMjEsINCh0KjQkA!5e1!3m2!1sru!2spl!4v1733250699788!5m2!1sru!2spl">
-										<summary class="spollers__title">Technical Centre (UK)</summary>
-										<div class="spollers__body">
-											<div class="body-medium text-dark-600">
-												<p>
-													Universal Smart Cards Limited <br> Unit 9 Devonshire Business Park<br>4 Chester Road<br>Borehamwood<br>Hertfordshire<br>WD6 1NA
-												</p>
-											</div>
-										</div>
-									</details>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- /.map-section -->
+			<!-- /.other-products -->
 			<section class="cta-section lg:py-20 md:py-16 py-0">
 				<div class="cta-section__container">
 					<div class="cta-section__content">
 						<div class="cta-section__left left-cta">
 							<h2 class="mb-5 headline-large text-light-900">
-								Want to experience our inlays firsthand?
+								Can't find an inlay that fits your product?
 							</h2>
 							<div class="body-large text-light-900 mb-8">
 								<p>
-									Request a demo kit or sample today to see how easily our inlays integrate into your wearables.
+									We can work together to design a custom inlay for your product's specific needs, conducting real-world tests to ensure peak performance.
 								</p>
 							</div>
-							<div class="flex items-center gap-4 sm:flex-row flex-col">
-								<a href="#" class="button button-secondary button-size-l justify-center sm:w-auto w-full">
-									<span>Request a Demo Kit</span>
+							<a href="#" class="button button-secondary button-size-l justify-center sm:w-auto w-full">
+								<span>Explore Now</span>
 
-								</a>
-								<a href="#" class="button button-border button-size-l justify-center sm:w-auto w-full">
-									<span>Request Sample</span>
-
-								</a>
-							</div>
+							</a>
 						</div>
 						<div class="cta-section__right right-cta">
 							<div class="right-cta__image">
@@ -389,72 +603,6 @@
 				</div>
 			</section>
 			<!-- /.cta-section -->
-			<section class="faq lg:py-20 md:py-16 py-10">
-				<div class="faq__container">
-					<div class="faq__content grid lg:grid-cols-2 lg:gap-5">
-						<div class="faq__heading section-heading">
-							<h2 class="text-dark-800 headline-large">
-								Frequently Asked <br> Questions
-							</h2>
-						</div>
-						<div class="faq__body">
-							<div data-spollers class="faq-spollers spollers">
-								<details class="spollers__item">
-									<summary class="spollers__title">What wearables can SmarTap inlays be integrated into?</summary>
-									<div class="spollers__body">
-										<div class="body-medium text-dark-600">
-											<p>
-												SmarTap inlays are compatible with a wide range of wearables, including rings, bracelets, and key fobs, allowing for flexible NFC and contactless payment integration.
-											</p>
-										</div>
-									</div>
-								</details>
-								<details class="spollers__item">
-									<summary class="spollers__title"> Are SmarTap inlays MasterCard certified?</summary>
-									<div class="spollers__body">
-										<div class="body-medium text-dark-600">
-											<p>
-												Are SmarTap inlays MasterCard certified?
-											</p>
-										</div>
-									</div>
-								</details>
-								<details class="spollers__item">
-									<summary class="spollers__title"> How secure is the SmarTap inlay?</summary>
-									<div class="spollers__body">
-										<div class="body-medium text-dark-600">
-											<p>
-												How secure is the SmarTap inlay?
-											</p>
-										</div>
-									</div>
-								</details>
-								<details class="spollers__item">
-									<summary class="spollers__title">How quickly can SmarTap inlays be deployed?</summary>
-									<div class="spollers__body">
-										<div class="body-medium text-dark-600">
-											<p>
-												How quickly can SmarTap inlays be deployed?
-											</p>
-										</div>
-									</div>
-								</details>
-								<details class="spollers__item">
-									<summary class="spollers__title">Can I request a demo or sample?</summary>
-									<div class="spollers__body">
-										<div class="body-medium text-dark-600">
-											<p>
-												How quickly can SmarTap inlays be deployed?
-											</p>
-										</div>
-									</div>
-								</details>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- /.faq -->
 		</main>
 		<footer class="footer ">
 
