@@ -11,7 +11,6 @@ $header_phone = get_field('smartap_phone_number', 'options');
 $header_button_arr = get_field('smartap_button', 'options');
 $header_button_title = $header_button_arr['title'];
 $header_button_url = $header_button_arr['url'];
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +24,7 @@ $header_button_url = $header_button_arr['url'];
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
+<body <?php body_class() ?>>
 	<div class="wrapper">
 		<header class="header">
 			<div class="header__container">

@@ -27,13 +27,19 @@ $use_cases_subtitle = get_field('page_use_cases_subtitle');
 						<?php
 						function is_big_item($i, $count_items)
 						{
-							$is_last_item_big = ($count_items % 3 === 0 or $count_items % 3 == 2)
+							$is_first_item_big = ($count_items % 3 === 0 or $count_items % 3 == 2)
 								? false
 								: true;
 
-							if ($i % 3 === 0) {
-								return 'item-big';
-							} else if ($is_last_item_big and $i === $count_items) {
+							if ($is_first_item_big) {
+								if ($i % 3 === 1) {
+									return 'item-big';
+								} else if ($is_first_item_big and $i === 1) {
+									return 'item-big';
+								} else {
+									return '';
+								}
+							} else if ($i % 3 === 0) {
 								return 'item-big';
 							} else {
 								return '';

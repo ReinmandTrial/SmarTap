@@ -257,38 +257,41 @@ function smartap_register_post_type()
 	]);
 
 	// WHY SMARTAP
-	register_post_type('social', [
-		'label'  => 'Socials',
+	register_post_type('products', [
+		'label'  => 'Products',
 		'labels' => [
-			'name'               => 'Socials', // основное название для типа записи
-			'singular_name'      => 'Social', // название для одной записи этого типа
-			'add_new'            => 'add Social', // для добавления новой записи
-			'add_new_item'       => 'Add Social', // заголовка у вновь создаваемой записи в админ-панели.
-			'edit_item'          => 'Edit Social', // для редактирования типа записи
-			'new_item'           => 'new Social', // текст новой записи
-			'view_item'          => 'view Social"', // для просмотра записи этого типа.
-			'search_items'       => 'search Social"', // для поиска по этим типам записи
-			'not_found'          => 'Тot found', // если в результате поиска ничего не было найдено
-			'not_found_in_trash' => 'Тot found in trash', // если не было найдено в корзине
+			'name'               => 'Products', // основное название для типа записи
+			'singular_name'      => 'Product', // название для одной записи этого типа
+			'add_new'            => 'add product', // для добавления новой записи
+			'add_new_item'       => 'Add product', // заголовка у вновь создаваемой записи в админ-панели.
+			'edit_item'          => 'Edit "why smartap"', // для редактирования типа записи
+			'new_item'           => 'new product', // текст новой записи
+			'view_item'          => 'view product', // для просмотра записи этого типа.
+			'search_items'       => 'search product', // для поиска по этим типам записи
+			'not_found'          => 'Not found', // если в результате поиска ничего не было найдено
+			'not_found_in_trash' => 'Not found in trash', // если не было найдено в корзине
 			'parent_item_colon'  => '', // для родителей (у древовидных типов)
-			'menu_name'          => 'Socials', // название меню
+			'menu_name'          => 'Products', // название меню
 		],
-		'description'            => 'Posts that are displayed in the "Why smartap" section',
+		'description'            => '',
 		'public'                 => true,
-		'exclude_from_search' => true, // зависит от public
-		'show_in_nav_menus'   => false, // зависит от public
 		'show_in_menu'           => true, // показывать ли в меню админки
-		'show_in_rest'        => null, // добавить в REST API. C WP 4.7
-		'rest_base'           => null, // $post_type. C WP 4.7
-		'menu_position'       => 4,
-		'menu_icon'           => 'dashicons-facebook',
+		'show_in_rest'        => true, // добавить в REST API. C WP 4.7
+		'rest_base'           => true, // $post_type. C WP 4.7
+		'menu_position'       => 2,
+		'menu_icon'           => 'dashicons-cart',
 		'hierarchical'        => false,
-		'supports'            => [], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+		'supports'            => ['title'], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
 		'taxonomies'          => [],
-		'has_archive'         => false,
-		'rewrite'             => true,
+		'has_archive'         => 'products',
+		'rewrite'             => ['slug' => 'product'],
 		'query_var'           => true,
 	]);
+	$child = acf_add_options_page(array(
+		'page_title'  => 'Settings for the catalog',
+		'menu_title'  => 'Settings catalog',
+		'parent_slug' => 'edit.php?post_type=products',
+	));
 }
 
 add_action('init', 'smartap_register_post_type');
@@ -430,3 +433,21 @@ function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
 
 	return $data;
 }
+
+// Add custom styles to WordPress admin area and customizer preview
+define('CUSTOM_ADMIN_CSS', '/* Fix style widget */
+    .wp-block-legacy-widget__edit-preview-iframe {
+        height: auto !important;
+    }
+		.block-editor-block-list__block.wp-block.wp-block-legacy-widget {
+			outline: 1px solid black;
+		}	
+');
+
+function smartap_add_custom_styles()
+{
+	echo '<style>' . CUSTOM_ADMIN_CSS . '</style>';
+}
+
+add_action('admin_head', 'smartap_add_custom_styles');
+add_action('customize_controls_print_styles', 'smartap_add_custom_styles');

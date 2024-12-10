@@ -173,7 +173,7 @@ $contacts_subtitle = get_field('contacts_subtitle');
 		</div>
 	</section>
 	<!-- /.map-section -->
-	<?php get_template_part('template-parts/cta') ?>
+	<?php get_template_part('template-parts/cta', 'request-demo') ?>
 	<!-- /.cta-section -->
 	<?php get_template_part('template-parts/questions') ?>
 	<!-- /.faq -->
