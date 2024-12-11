@@ -71,6 +71,7 @@ function formatBytes($bytes)
 		return $bytes . ' B';
 	}
 }
+
 ?>
 <main class="page">
 	<section class="product-info pt-8 lg:pb-20 md:pb-16 pb-8">

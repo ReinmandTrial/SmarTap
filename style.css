@@ -1707,6 +1707,9 @@ textarea.input {
   -o-object-fit: cover;
   object-fit: cover
 }
+.section-compare:empty {
+  padding: 0;
+}
 .section-compare-table .product-in-table__header {
   max-width: 12.5rem;
   background-color: var(--brand-25);

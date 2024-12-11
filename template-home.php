@@ -148,26 +148,15 @@ $why_smartap_subtitle = $why_smartap_header['subtitle'];
 				<div class="benefits__body">
 					<div class="benefits__list">
 						<?php
-						global $post;
-
-						$benefits_posts = new WP_Query([
-							'post_type' => 'benefits',
-							'orderby'   => 'date',
-							'order'     => 'ASC'
-						]);
-
-						if ($benefits_posts->have_posts()) {
+						$benefits_card = get_field('benefits_group');
+						if (!empty($benefits_card)) {
 							$i = 0;
-							while ($benefits_posts->have_posts()) {
+							foreach ($benefits_card as $item) {
 								$i++;
-								$benefits_posts->the_post();
 
-								// Variables
-								$content = strip_tags(get_the_content());
-
-								$thumbnail_id = get_post_thumbnail_id(get_the_ID()); // Получаем ID миниатюры
-								$thumbnail_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); // Получаем атрибут alt
-								$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full'); // Получаем атрибут alt
+								$title = !empty($item['title']) ? $item['title'] : '';
+								$subtitle = !empty($item['subtitle']) ? $item['subtitle'] : '';
+								$image = !empty($item['img']) ? $item['img'] : '';
 
 						?>
 								<div class="benefits__item item-benefit">
@@ -175,31 +164,30 @@ $why_smartap_subtitle = $why_smartap_header['subtitle'];
 										<div class="item-benefit__header">
 											<span class="headline-medium text-dark-600"><?= sprintf('%02d', $i) ?></span>
 											<div class="item-benefit__icon">
-												<img src="<?= esc_url($thumbnail_url) ?>" alt="<?= esc_attr($thumbnail_alt) ?>">
+												<img src="<?= esc_url($image['url']) ?>" alt="<?= esc_attr($image['alt']) ?>">
 											</div>
 										</div>
 										<div class="item-benefit__content">
 											<div class="item-benefit__text">
 												<h5 class="headline-medium text-dark-800 mb-4">
-													<?php the_title() ?>
+													<?= $title ?>
 												</h5>
 												<div class="body-medium text-dark-600">
 													<p>
-														<?= $content ?>
+														<?= $subtitle ?>
 													</p>
 												</div>
 											</div>
 											<div class="item-benefit__icon--pc">
-												<img src="<?= esc_url($thumbnail_url) ?>" alt="<?= esc_attr($thumbnail_alt) ?>">
+												<img src="<?= esc_url($image['url']) ?>" alt="<?= esc_attr($image['alt']) ?>">
 											</div>
 										</div>
 									</div>
 								</div>
 						<?php
+
 							}
 						}
-
-						wp_reset_postdata(); // Сбрасываем $post
 						?>
 					</div>
 				</div>
@@ -220,41 +208,28 @@ $why_smartap_subtitle = $why_smartap_header['subtitle'];
 				</div>
 				<div class="how-it-works__body">
 					<?php
-					global $post;
-
-					$why_smartap_posts = new WP_Query([
-						'post_type' => 'how_it_works',
-						'orderby'   => 'date',
-						'order'     => 'ASC'
-					]);
-
-					if ($why_smartap_posts->have_posts()) {
+					$how_it_works = get_field('how_it_works_group');
+					if (!empty($how_it_works)) {
 						$i = 0;
-						while ($why_smartap_posts->have_posts()) {
+						foreach ($benefits_card as $item) {
 							$i++;
-							$why_smartap_posts->the_post();
 
-							// Variables
-							$content = strip_tags(get_the_content());
-
-							$thumbnail_id = get_post_thumbnail_id(get_the_ID()); // Получаем ID миниатюры
-							$thumbnail_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); // Получаем атрибут alt
-							$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full'); // Получаем атрибут alt
-
+							$title = !empty($item['title']) ? $item['title'] : '';
+							$subtitle = !empty($item['subtitle']) ? $item['subtitle'] : '';
+							$image = !empty($item['img']) ? $item['img'] : '';
 					?>
 							<div class="how-it-works__step step">
 								<div class="step__body">
 									<div class="step__num"><?= sprintf('%02d', $i) ?></div>
 									<div class="step__content">
-										<h5 class="headline-medium text-dark-800 mb-3"><?php the_title() ?></h5>
-										<p class="text-dark-600 body-medium"><?= $content ?></p>
+										<h5 class="headline-medium text-dark-800 mb-3"><?= $title ?></h5>
+										<p class="text-dark-600 body-medium"><?= $subtitle ?></p>
 									</div>
 								</div>
 							</div>
 					<?php
 						}
 					}
-					wp_reset_postdata(); // Сбрасываем $post
 					?>
 				</div>
 			</div>
@@ -335,62 +310,51 @@ $why_smartap_subtitle = $why_smartap_header['subtitle'];
 					<div data-tabs class="tabs tabs-vertical">
 						<nav data-tabs-titles class="tabs__navigation">
 							<?php
-							global $post;
-
-							$why_smartap = new WP_Query([
-								'post_type' => 'why_smartap',
-								'orderby'   => 'date',
-								'order'     => 'ASC'
-							]);
-							$arr_why_thumbnail = [];
-
-							if ($why_smartap->have_posts()) {
+							$why_us = get_field('why_smartap_group');
+							$img_arr = [];
+							if (!empty($why_us)) {
 								$i = 0;
-
-
-								while ($why_smartap->have_posts()) {
+								foreach ($why_us as $item) {
 									$i++;
-									$why_smartap->the_post();
+									$is_active = $i > 1 ? '' : '_tab-active';
 
-									// Variables
-									$content = strip_tags(get_the_content());
+									$title = $item['title'];
+									$subtitle = $item['subtitle'];
+									$image = $item['img'];
 
-									$thumbnail_id = get_post_thumbnail_id(get_the_ID()); // Получаем ID миниатюры
-									$thumbnail_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); // Получаем атрибут alt
-									$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full'); // Получаем атрибут alt
-									array_push($arr_why_thumbnail, [
-										'alt' => $thumbnail_alt,
-										'url' => $thumbnail_url,
+									array_push($img_arr, [
+										'url' => $image['url'],
+										'alt' => $image['alt'],
 									])
-
 							?>
-									<div class="tabs__title <? if ($i === 1) {
-																						echo '_tab-active';
-																					} ?>">
-										<button type="button" class="tabs__title-button"><?php the_title() ?></button>
+									<div class="tabs__title <?= $is_active ?>">
+										<button type="button" class="tabs__title-button"><?= $title ?></button>
 										<div class="tabs__title-content body-large text-dark-400">
 											<p>
-												<?= $content ?>
+												<?= $subtitle ?>
 											</p>
 										</div>
 										<div class="tabs__title-image">
-											<img src="<?= esc_url($thumbnail_url) ?>" alt="<?= esc_attr($thumbnail_alt) ?>">
+											<img src="<?= $image['url'] ?>" alt="<?= $image['alt'] ?>">
+										</div>
+									</div>
+								<?php	} ?>
+							<?php } ?>
+						</nav>
+						<div data-tabs-body class="tabs__content">
+							<?php
+							if (!empty($img_arr)) {
+								foreach ($img_arr as $image) {
+							?>
+									<div class="tabs__body">
+										<div class="why-us-tabs__image">
+											<img src="<?= $image['url'] ?>" alt="<?= $image['alt'] ?>">
 										</div>
 									</div>
 							<?php
 								}
 							}
-							wp_reset_postdata(); // Сбрасываем $post
 							?>
-						</nav>
-						<div data-tabs-body class="tabs__content">
-							<?php foreach ($arr_why_thumbnail as $thumbnail) { ?>
-								<div class="tabs__body">
-									<div class="why-us-tabs__image">
-										<img src="<?= esc_url($thumbnail['url']) ?>" alt="<?= esc_attr($thumbnail['alt']) ?>">
-									</div>
-								</div>
-							<?php } ?>
 						</div>
 					</div>
 				</div>

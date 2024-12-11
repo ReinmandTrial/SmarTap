@@ -125,7 +125,7 @@ function smartap_enqueue_styles()
 		'smartap-style',
 		get_stylesheet_uri(),
 		array(),
-		_S_VERSION
+		// _S_VERSION
 	);
 
 	// Enqueue main script
@@ -133,9 +133,23 @@ function smartap_enqueue_styles()
 		'smartap-app',
 		SCRIPT_PATH . '/app.js',
 		array(),
-		_S_VERSION,
+		'',
 		true
 	);
+
+	// Enqueue main script
+	wp_enqueue_script(
+		'smartap-compare',
+		SCRIPT_PATH . '/compare.js',
+		array(),
+		'',
+		true
+	);
+	// Передаем данные в скрипт
+	wp_localize_script('smartap-compare', 'ajaxData', [
+		'ajaxUrl' => admin_url('admin-ajax.php'), // WordPress AJAX URL
+		'nonce'   => wp_create_nonce('compare_nonce') // Генерация уникального ключа
+	]);
 
 	// Enqueue google maps api
 	wp_enqueue_script(

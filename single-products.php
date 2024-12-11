@@ -25,8 +25,6 @@ function print_specification($specification_arr)
 {
 	$more_specification = $specification_arr['more'];
 
-
-
 	$main_specification = $specification_arr;
 	unset($main_specification['more']);
 
@@ -44,6 +42,11 @@ function print_specification($specification_arr)
 				echo '</li>';
 			}
 		}
+	}
+
+	if (empty($more_specification) and empty($more_specification)) {
+		echo 'Empty';
+		return false;
 	}
 
 	if (!empty($more_specification)) {

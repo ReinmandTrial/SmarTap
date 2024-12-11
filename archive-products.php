@@ -50,6 +50,7 @@ require_once('inc/get-permalink-by-slug.php')
 						if ($the_query->have_posts()) :
 							while ($the_query->have_posts()) : $the_query->the_post();
 								$product_category = get_field('product_category');
+								$product_id = get_the_ID();
 
 								$product_img_data = get_field('product_images');
 								$product_img_url = $product_img_data[0]['url'];
@@ -83,7 +84,7 @@ require_once('inc/get-permalink-by-slug.php')
 										</div>
 										<div class="product-item__footer">
 											<div class="flex items-center justify-between gap-4">
-												<a href="#" class="button button-size-l button-tinted">
+												<a href="#compare" id='send-request' data-id-product='<?= $product_id ?>' data-request-html='true' data-target-section='.section-compare' class="button button-size-l button-tinted">
 													<span>
 														Compare
 													</span>
