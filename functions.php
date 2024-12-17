@@ -127,6 +127,13 @@ function smartap_enqueue_styles()
 		array(),
 		// _S_VERSION
 	);
+	// Enqueue main style
+	wp_enqueue_style(
+		'smartap-custom',
+		get_template_directory_uri() . '/css/custom.css',
+		array('smartap-style'),
+		// _S_VERSION
+	);
 
 	// Enqueue main script
 	wp_enqueue_script(
@@ -148,7 +155,9 @@ function smartap_enqueue_styles()
 	// Передаем данные в скрипт
 	wp_localize_script('smartap-compare', 'ajaxData', [
 		'ajaxUrl' => admin_url('admin-ajax.php'), // WordPress AJAX URL
-		'nonce'   => wp_create_nonce('compare_nonce') // Генерация уникального ключа
+		'nonce'   => wp_create_nonce('compare_nonce'), // Генерация уникального ключа
+		'nonceReview'   => wp_create_nonce('load_reviews_nonce'), // Генерация уникального ключа
+		'nonceReviewForm'   => wp_create_nonce('ajax_form_review') // Генерация уникального ключа
 	]);
 
 	// Enqueue google maps api
@@ -164,289 +173,6 @@ function smartap_enqueue_styles()
 	);
 }
 add_action('wp_enqueue_scripts', 'smartap_enqueue_styles');
-
-
-function smartap_register_post_type()
-{
-	// BENEFITS
-	register_post_type('benefits', [
-		'label'  => 'benefits',
-		'labels' => [
-			'name'               => 'Benefits', // основное название для типа записи
-			'singular_name'      => 'Benefit', // название для одной записи этого типа
-			'add_new'            => 'add benefit', // для добавления новой записи
-			'add_new_item'       => 'Add benefit', // заголовка у вновь создаваемой записи в админ-панели.
-			'edit_item'          => 'Edit benefit', // для редактирования типа записи
-			'new_item'           => 'new benefit', // текст новой записи
-			'view_item'          => 'view benefit', // для просмотра записи этого типа.
-			'search_items'       => 'search benefit', // для поиска по этим типам записи
-			'not_found'          => 'Тot found', // если в результате поиска ничего не было найдено
-			'not_found_in_trash' => 'Тot found in trash', // если не было найдено в корзине
-			'parent_item_colon'  => '', // для родителей (у древовидных типов)
-			'menu_name'          => 'Benefits', // название меню
-		],
-		'description'            => 'Posts that are displayed in the benefits section',
-		'public'                 => true,
-		'exclude_from_search' => true, // зависит от public
-		'show_in_nav_menus'   => false, // зависит от public
-		'show_in_menu'           => true, // показывать ли в меню админки
-		'show_in_rest'        => null, // добавить в REST API. C WP 4.7
-		'rest_base'           => null, // $post_type. C WP 4.7
-		'menu_position'       => 4,
-		'menu_icon'           => 'dashicons-star-filled',
-		'hierarchical'        => false,
-		'supports'            => ['title', 'editor', 'thumbnail'], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-		'taxonomies'          => [],
-		'has_archive'         => false,
-		'rewrite'             => true,
-		'query_var'           => true,
-	]);
-
-	// HOW IT WORKS
-	register_post_type('how_it_works', [
-		'label'  => 'How it works',
-		'labels' => [
-			'name'               => 'How it works', // основное название для типа записи
-			'singular_name'      => 'How it work', // название для одной записи этого типа
-			'add_new'            => 'add how it works', // для добавления новой записи
-			'add_new_item'       => 'Add "how it work"', // заголовка у вновь создаваемой записи в админ-панели.
-			'edit_item'          => 'Edit how it work', // для редактирования типа записи
-			'new_item'           => 'new how it work', // текст новой записи
-			'view_item'          => 'view how it work', // для просмотра записи этого типа.
-			'search_items'       => 'search how it work', // для поиска по этим типам записи
-			'not_found'          => 'Тot found', // если в результате поиска ничего не было найдено
-			'not_found_in_trash' => 'Тot found in trash', // если не было найдено в корзине
-			'parent_item_colon'  => '', // для родителей (у древовидных типов)
-			'menu_name'          => 'How it works', // название меню
-		],
-		'description'            => 'Posts that are displayed in the "how it work" section',
-		'public'                 => true,
-		'exclude_from_search' => true, // зависит от public
-		'show_in_nav_menus'   => false, // зависит от public
-		'show_in_menu'           => true, // показывать ли в меню админки
-		'show_in_rest'        => null, // добавить в REST API. C WP 4.7
-		'rest_base'           => null, // $post_type. C WP 4.7
-		'menu_position'       => 4,
-		'menu_icon'           => 'dashicons-admin-generic',
-		'hierarchical'        => false,
-		'supports'            => ['title', 'editor'], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-		'taxonomies'          => [],
-		'has_archive'         => false,
-		'rewrite'             => true,
-		'query_var'           => true,
-	]);
-
-	// WHY SMARTAP
-	register_post_type('why_smartap', [
-		'label'  => 'Why smartap',
-		'labels' => [
-			'name'               => 'Why smartap', // основное название для типа записи
-			'singular_name'      => 'Why smartap', // название для одной записи этого типа
-			'add_new'            => 'add "why smartap"', // для добавления новой записи
-			'add_new_item'       => 'Add "why smartap"', // заголовка у вновь создаваемой записи в админ-панели.
-			'edit_item'          => 'Edit "why smartap"', // для редактирования типа записи
-			'new_item'           => 'new "why smartap"', // текст новой записи
-			'view_item'          => 'view "why smartap"', // для просмотра записи этого типа.
-			'search_items'       => 'search "why smartap"', // для поиска по этим типам записи
-			'not_found'          => 'Тot found', // если в результате поиска ничего не было найдено
-			'not_found_in_trash' => 'Тot found in trash', // если не было найдено в корзине
-			'parent_item_colon'  => '', // для родителей (у древовидных типов)
-			'menu_name'          => 'Why smartap', // название меню
-		],
-		'description'            => 'Posts that are displayed in the "Why smartap" section',
-		'public'                 => true,
-		'exclude_from_search' => true, // зависит от public
-		'show_in_nav_menus'   => false, // зависит от public
-		'show_in_menu'           => true, // показывать ли в меню админки
-		'show_in_rest'        => null, // добавить в REST API. C WP 4.7
-		'rest_base'           => null, // $post_type. C WP 4.7
-		'menu_position'       => 4,
-		'menu_icon'           => 'dashicons-groups',
-		'hierarchical'        => false,
-		'supports'            => ['title', 'editor', 'thumbnail'], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-		'taxonomies'          => [],
-		'has_archive'         => false,
-		'rewrite'             => true,
-		'query_var'           => true,
-	]);
-
-	// WHY SMARTAP
-	register_post_type('products', [
-		'label'  => 'Products',
-		'labels' => [
-			'name'               => 'Products', // основное название для типа записи
-			'singular_name'      => 'Product', // название для одной записи этого типа
-			'add_new'            => 'add product', // для добавления новой записи
-			'add_new_item'       => 'Add product', // заголовка у вновь создаваемой записи в админ-панели.
-			'edit_item'          => 'Edit "why smartap"', // для редактирования типа записи
-			'new_item'           => 'new product', // текст новой записи
-			'view_item'          => 'view product', // для просмотра записи этого типа.
-			'search_items'       => 'search product', // для поиска по этим типам записи
-			'not_found'          => 'Not found', // если в результате поиска ничего не было найдено
-			'not_found_in_trash' => 'Not found in trash', // если не было найдено в корзине
-			'parent_item_colon'  => '', // для родителей (у древовидных типов)
-			'menu_name'          => 'Products', // название меню
-		],
-		'description'            => '',
-		'public'                 => true,
-		'show_in_menu'           => true, // показывать ли в меню админки
-		'show_in_rest'        => true, // добавить в REST API. C WP 4.7
-		'rest_base'           => true, // $post_type. C WP 4.7
-		'menu_position'       => 2,
-		'menu_icon'           => 'dashicons-cart',
-		'hierarchical'        => false,
-		'supports'            => ['title'], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-		'taxonomies'          => [],
-		'has_archive'         => 'products',
-		'rewrite'             => ['slug' => 'product'],
-		'query_var'           => true,
-	]);
-	$child = acf_add_options_page(array(
-		'page_title'  => 'Settings for the catalog',
-		'menu_title'  => 'Settings catalog',
-		'parent_slug' => 'edit.php?post_type=products',
-	));
-}
-
-add_action('init', 'smartap_register_post_type');
-
-
-function smartap_widgets_init()
-{
-	register_sidebar(array(
-		'name' => 'Footer',
-		'id' => 'footer_sidebar',
-		'description' => 'This sidebar is displayed in footer',
-		'description'   => '',
-		'class'         => '',
-		'before_widget' => '<div class="footer__menu menu">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<p class="text-brand-main title-medium mb-5 uppercase">',
-		'after_title'   => '</p>',
-		'before_sidebar' => '', // WP 5.6
-		'after_sidebar'  => '', // WP 5.6
-	));
-}
-add_action('widgets_init', 'smartap_widgets_init');
-
-
-
-// Method 2: Setting.
-function my_acf_init()
-{
-	acf_update_setting('google_api_key', 'AIzaSyB7EWRjbOhYVQQgWxqwPWFbGJJ_YZrmrD0');
-}
-add_action('acf/init', 'my_acf_init');
-
-
-
-// /**
-//  * Implement the Custom Header feature.
-//  */
-// require get_template_directory() . '/inc/custom-header.php';
-
-// /**
-//  * Custom template tags for this theme.
-//  */
-// require get_template_directory() . '/inc/template-tags.php';
-
-// /**
-//  * Functions which enhance the theme by hooking into WordPress.
-//  */
-// require get_template_directory() . '/inc/template-functions.php';
-
-// /**
-//  * Customizer additions.
-//  */
-// require get_template_directory() . '/inc/customizer.php';
-
-// /**
-//  * Load Jetpack compatibility file.
-//  */
-// if (defined('JETPACK__VERSION')) {
-// 	require get_template_directory() . '/inc/jetpack.php';
-// }
-
-add_action('acf/init', 'my_acf_op_init');
-function my_acf_op_init()
-{
-
-	// Check function exists.
-	if (function_exists('acf_add_options_page')) {
-
-		// Add parent.
-		$parent = acf_add_options_page(array(
-			'page_title'  => ('Custom Fields'),
-			'menu_title'  => ('Custom Fields'),
-			'redirect'    => true,
-		));
-
-		// Add sub page.
-		$child = acf_add_options_page(array(
-			'page_title'  => ('Header and Footer'),
-			'menu_title'  => ('Header and Footer'),
-			'parent_slug' => $parent['menu_slug'],
-		));
-		$child = acf_add_options_page(array(
-			'page_title'  => ('CTA'),
-			'menu_title'  => ('CTA'),
-			'parent_slug' => $parent['menu_slug'],
-		));
-		$child = acf_add_options_page(array(
-			'page_title'  => ('Questions'),
-			'menu_title'  => ('Questions'),
-			'parent_slug' => $parent['menu_slug'],
-		));
-		$child = acf_add_options_page(array(
-			'page_title'  => ('Socials'),
-			'menu_title'  => ('Socials'),
-			'parent_slug' => $parent['menu_slug'],
-		));
-	}
-}
-
-add_filter('upload_mimes', 'svg_upload_allow');
-
-# Добавляет SVG в список разрешенных для загрузки файлов.
-function svg_upload_allow($mimes)
-{
-	$mimes['svg']  = 'image/svg+xml';
-
-	return $mimes;
-}
-
-add_filter('wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5);
-
-# Исправление MIME типа для SVG файлов.
-function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
-{
-
-	// WP 5.1 +
-	if (version_compare($GLOBALS['wp_version'], '5.1.0', '>=')) {
-		$dosvg = in_array($real_mime, ['image/svg', 'image/svg+xml']);
-	} else {
-		$dosvg = ('.svg' === strtolower(substr($filename, -4)));
-	}
-
-	// mime тип был обнулен, поправим его
-	// а также проверим право пользователя
-	if ($dosvg) {
-
-		// разрешим
-		if (current_user_can('manage_options')) {
-
-			$data['ext']  = 'svg';
-			$data['type'] = 'image/svg+xml';
-		}
-		// запретим
-		else {
-			$data['ext']  = false;
-			$data['type'] = false;
-		}
-	}
-
-	return $data;
-}
 
 // Add custom styles to WordPress admin area and customizer preview
 define('CUSTOM_ADMIN_CSS', '/* Fix style widget */
@@ -465,3 +191,19 @@ function smartap_add_custom_styles()
 
 add_action('admin_head', 'smartap_add_custom_styles');
 add_action('customize_controls_print_styles', 'smartap_add_custom_styles');
+
+require_once('inc/smartap-register-post-type.php');
+
+require_once('inc/smartap-widgets-init.php');
+
+require_once('inc/acf-option-pages.php');
+
+require_once('inc/fix-svg-mine-type.php');
+
+require_once('inc/contact-form-custom.php');
+
+require_once('inc/custom-review-summary.php');
+
+require_once('inc/review-ajax.php');
+
+require_once('inc/ajax-form-review.php');

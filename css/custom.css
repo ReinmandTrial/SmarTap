@@ -1,0 +1,364 @@
+html, body {
+  min-height: 100vh;
+  max-width: 100%;
+  overflow-x: clip;
+}
+.section-compare:empty {
+  padding: 0;
+}
+.checkbox__input input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0
+}
+.checkbox__input input:focus-visible+.wpcf7-list-item-label:before {
+  box-shadow: rgba(11,152,222,.24) 0 0 2px
+}
+.checkbox__input input:checked+.wpcf7-list-item-label:before {
+  background: var(--brand-main);
+  border-color: var(--brand-main)
+}
+.wpcf7-list-item-label {
+  cursor: pointer;
+  display: inline-flex;
+  position: relative;
+  gap: 10px
+}
+.wpcf7-list-item-label:before {
+  content: "";
+  align-self: flex-start;
+  flex: 0 0 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: .375rem;
+  border: 2px solid var(--dark-700)
+}
+.wpcf7-list-item-label::after {
+  content: "";
+  width: .875rem;
+  height: .875rem;
+  display: block;
+  position: absolute;
+  left: 3px;
+  top: 2px;
+  -webkit-mask: url(../img/icons/check.svg) 0 0/cover no-repeat;
+  background-color: #fff
+}
+.wpcf7-list-item {
+  margin: 0;
+}
+.checkbox__text {
+  align-self: center;
+  font-size: .875rem;
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--dark-800)
+}
+.checkbox a {
+  transition-property: color,background-color,border-color,text-decoration-color,fill,stroke;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-duration: 150ms;
+  text-decoration: underline;
+  color: var(--brand-main)
+}
+.checkbox a:hover {
+  text-decoration: none
+}
+.checkbox > p {
+  display: flex;
+  gap: 2px;
+}
+.wpcf7-response-output {
+  border-radius: 8px;
+  padding: 10px !important;
+  max-width: 350px;
+  margin-left: 0 !important;
+}
+.wpcf7 form.invalid .wpcf7-response-output, .wpcf7 form.unaccepted .wpcf7-response-output, .wpcf7 form.payment-required .wpcf7-response-output {
+  border-color: var(--system-warning);
+}
+.wpcf7 form.sent .wpcf7-response-output {
+  border-color: var(--system-success);
+}
+.wpcf7-spinner {
+  background-color: var(--brand-main);
+  margin-top: 14px;
+}
+.glsr-summary {
+  flex-wrap: nowrap !important  ;
+}
+.glsr-stars {
+  justify-content: left !important;
+}
+.load {
+  opacity: .5;
+  transition: all .25s;
+}
+
+input.form-star {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+label.form-star-label {
+  position: relative;
+  width: 15px;
+  height: 13px;
+}
+label.form-star-label:hover {
+  cursor: pointer;
+}
+label.form-star-label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-size: var(--glsr-review-star);
+  flex-shrink: 0;
+  font-size: inherit;
+  height: var(--glsr-review-star);
+  width: var(--glsr-review-star);
+  background-image: var(--glsr-star-empty);
+}
+label.form-star-label_fill::before {
+  background-image: var(--glsr-star-full);
+}
+.wpcf7-spinner {
+  display: none;
+}
+form.submitting .wpcf7-spinner {
+  display: block;
+}
+
+
+/**
+ * Star Rating
+ * @version: 4.3.0
+ * @author: Paul Ryley (http://geminilabs.io)
+ * @url: https://github.com/pryley/star-rating.js
+ * @license: MIT
+ */
+
+ :root {
+  --gl-star-color: #fdd835;
+  --gl-star-color-inactive: #dcdce6;
+  --gl-star-empty: url('./img/product-info/star-empty.svg');
+  --gl-star-full: url('./img/product-info/star-full.svg');
+  --gl-star-size: 24px;
+  --gl-tooltip-background: rgba(17,17,17, .9);
+  --gl-tooltip-border-radius: 4px;
+  --gl-tooltip-color: #fff;
+  --gl-tooltip-font-size: 0.875rem;
+  --gl-tooltip-font-weight: 400;
+  --gl-tooltip-line-height: 1;
+  --gl-tooltip-margin: 12px;
+  --gl-tooltip-padding: .5em 1em;
+}
+
+[data-star-rating] > select {
+  -webkit-clip-path: circle(1px at 0 0) !important;
+          clip-path: circle(1px at 0 0) !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  height: 1px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  top: 0 !important;
+  visibility: visible !important;
+  white-space: nowrap !important;
+  width: 1px !important;
+}
+
+[data-star-rating] > select {
+  -webkit-appearance:  none;
+     -moz-appearance:  none;
+          appearance:  none;
+  pointer-events: none;
+}
+
+[data-star-rating] > select::before,
+[data-star-rating] > select::after {
+  display: none !important;
+}
+
+[data-star-rating].gl-star-rating--ltr > select {
+  left: 0 !important;
+}
+
+[data-star-rating].gl-star-rating--rtl > select {
+  right: 0 !important;
+}
+
+[data-star-rating] {
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.gl-star-rating:not([data-star-rating]) .gl-star-rating--stars {
+  display: none;
+}
+
+[data-star-rating] .gl-star-rating--stars {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  position: relative;
+}
+
+[data-star-rating] > select:focus + .gl-star-rating--stars span:first-child::before {
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  box-shadow: 0 0 0 3px -webkit-focus-ring-color;
+  box-shadow: 0 0 0 3px Highlight;
+  content: '';
+  display: block;
+  height: 100%;
+  outline: 1px solid transparent;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+[data-star-rating] select[disabled] + .gl-star-rating--stars {
+  cursor: default;
+}
+
+[data-star-rating] .gl-star-rating--stars > span {
+  display: flex;
+  height: 24px;
+  height: 24px;
+  height: var(--gl-star-size);
+  margin: 0;
+  width: 24px;
+  width: 24px;
+  width: var(--gl-star-size);
+}
+
+[data-star-rating] .gl-star-rating--stars[aria-label]::before,
+[data-star-rating] .gl-star-rating--stars[aria-label]::after {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  bottom: auto;
+  box-sizing: border-box;
+  left: 100%;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform-origin: top;
+  transform: translate3d(0,-50%,0);
+  white-space: nowrap;
+  z-index: 10;
+}
+
+[data-star-rating] .gl-star-rating--stars[aria-label]::before {
+  background: rgba(17,17,17, .9);
+  background: rgba(17,17,17, .9);
+  background: var(--gl-tooltip-background);
+  -webkit-clip-path: path('M6 14.998c0-3-6-5.499-6-7.499S5.999 3 5.999 0L6 14.998z');
+          clip-path: path('M6 14.998c0-3-6-5.499-6-7.499S5.999 3 5.999 0L6 14.998z');
+  content: '';
+  height: 15px;
+  margin: 0 0 0 6px;
+  width: 6px;
+}
+
+[data-star-rating] .gl-star-rating--stars[aria-label]::after {
+  background: rgba(17,17,17, .9);
+  background: rgba(17,17,17, .9);
+  background: var(--gl-tooltip-background);
+  border-radius: 4px;
+  border-radius: 4px;
+  border-radius: var(--gl-tooltip-border-radius);
+  color: #fff;
+  color: #fff;
+  color: var(--gl-tooltip-color);
+  content: attr(aria-label);
+  font-size: 0.875rem;
+  font-size: 0.875rem;
+  font-size: var(--gl-tooltip-font-size);
+  font-weight: normal;
+  margin-left: 12px;
+  margin-left: 12px;
+  margin-left: var(--gl-tooltip-margin);
+  padding: .5em 1em;
+  padding: .5em 1em;
+  padding: var(--gl-tooltip-padding);
+  text-transform: none;
+}
+
+[data-star-rating].gl-star-rating--rtl .gl-star-rating--stars[aria-label]::before,
+[data-star-rating].gl-star-rating--rtl .gl-star-rating--stars[aria-label]::after {
+  left: auto;
+  right: 100%;
+}
+
+[data-star-rating].gl-star-rating--rtl .gl-star-rating--stars[aria-label]::before {
+  transform: scaleX(-1) translate3d(0,-50%,0);
+  margin: 0 6px 0 0;
+}
+
+[data-star-rating].gl-star-rating--rtl .gl-star-rating--stars[aria-label]::after {
+  margin-left: 0;
+  margin-right: 12px;
+  margin-right: 12px;
+  margin-right: var(--gl-tooltip-margin);
+}
+
+[data-star-rating] svg {
+  height: 100%;
+  width: 100%;
+}
+
+[data-star-rating] .gl-star-half {
+  fill: none;
+  stroke: none;
+}
+
+[data-star-rating] .gl-star-full {
+  fill: #dcdce6;
+  fill: #dcdce6;
+  fill: var(--gl-star-color-inactive);
+  stroke: #dcdce6;
+  stroke: #dcdce6;
+  stroke: var(--gl-star-color-inactive);
+  transition: fill 0.15s ease-in-out, stroke 0.15s ease-in-out;
+}
+
+[data-star-rating] .gl-active .gl-star-full {
+  fill: #fdd835;
+  fill: #fdd835;
+  fill: var(--gl-star-color);
+  stroke: #fdd835;
+  stroke: #fdd835;
+  stroke: var(--gl-star-color);
+}
+
+/* Compatibilty with v3 */
+
+[data-star-rating] .gl-star-rating--stars > span {
+  background-image: url('../img/product-info/star-empty.svg') !important;
+  background-image: url('../img/product-info/star-empty.svg') !important;
+}
+
+.gl-star-rating--stars[class*=" s"] > span {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+}
+
+[data-star-rating] .gl-star-rating--stars > span.gl-active,
+[data-star-rating] .gl-star-rating--stars > span.gl-active.gl-selected {
+  background-image: url('../img/product-info/star-full.svg') !important;
+  background-image: url('../img/product-info/star-full.svg') !important;
+}
+.jumbotron__background img,
+.jumbotron__background video {
+  border-radius: 0 0 2rem 2rem;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover
+}

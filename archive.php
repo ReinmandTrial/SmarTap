@@ -15,7 +15,7 @@ $catalog_subtitle = get_field('catalog_products_subtitle', 'options');
 require_once('inc/get-permalink-by-slug.php')
 
 ?>
-<main class="page">
+<main class="page-section">
 	<section class="page-section lg:py-20 md:py-16 py-10">
 		<div class="page-section__container">
 			<div class="page-section__content">

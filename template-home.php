@@ -80,7 +80,7 @@ $why_smartap_header = get_field('why_smartap_header');
 $why_smartap_title = $why_smartap_header['title'];
 $why_smartap_subtitle = $why_smartap_header['subtitle'];
 ?>
-<main class="page">
+<main class="page-section">
 	<section class="jumbotron">
 		<div class="jumbotron__container">
 			<div class="jumbotron__content">
@@ -129,7 +129,9 @@ $why_smartap_subtitle = $why_smartap_header['subtitle'];
 			</div>
 		</div>
 		<div class="jumbotron__background">
-			<img src="<?= $hero_background_url ?>" alt="<?= $hero_background_alt ?>">
+			<video class="video-container__video object-cover shadow-lg" id="videoPromoCases" autoplay muted playsinline loop>
+				<source src="<?= $hero_background_url ?>" type="video/mp4">
+			</video>
 		</div>
 	</section>
 	<!-- /.jumbotron -->
@@ -211,12 +213,11 @@ $why_smartap_subtitle = $why_smartap_header['subtitle'];
 					$how_it_works = get_field('how_it_works_group');
 					if (!empty($how_it_works)) {
 						$i = 0;
-						foreach ($benefits_card as $item) {
+						foreach ($how_it_works as $item) {
 							$i++;
 
 							$title = !empty($item['title']) ? $item['title'] : '';
 							$subtitle = !empty($item['subtitle']) ? $item['subtitle'] : '';
-							$image = !empty($item['img']) ? $item['img'] : '';
 					?>
 							<div class="how-it-works__step step">
 								<div class="step__body">
@@ -266,26 +267,10 @@ $why_smartap_subtitle = $why_smartap_header['subtitle'];
 				</div>
 				<div class="promo-video__body">
 					<div class="video-container">
-						<video class="video-container__video object-cover" id="videoPromoCases">
+						<video class="video-container__video object-cover" id="videoPromoCases" autoplay muted playsinline loop>
 							<source src="<?= $use_cases_video_url ?>" type="video/mp4">
 
 						</video>
-						<button class="video-container__control custom-play">
-							<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<g filter="url(#filter0_b_16534_3296)">
-									<rect width="80" height="80" rx="40" fill="white" />
-									<path d="M56.25 37.904C57.9167 38.8355 57.9167 41.1645 56.25 42.096L33.75 54.6721C32.0833 55.6037 30 54.4392 30 52.5761L30 27.4239C30 25.5608 32.0833 24.3963 33.75 25.3279L56.25 37.904Z" fill="#0F161C" />
-								</g>
-								<defs>
-									<filter id="filter0_b_16534_3296" x="-16" y="-16" width="112" height="112" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-										<feFlood flood-opacity="0" result="BackgroundImageFix" />
-										<feGaussianBlur in="BackgroundImageFix" stdDeviation="8" />
-										<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_16534_3296" />
-										<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_16534_3296" result="shape" />
-									</filter>
-								</defs>
-							</svg>
-						</button>
 					</div>
 
 
@@ -374,52 +359,7 @@ $why_smartap_subtitle = $why_smartap_header['subtitle'];
 			</div>
 		</div>
 		<div class="partners__body">
-			<div class="partners-autoplay__slider swiper">
-				<div class="partners-autoplay__wrapper swiper-wrapper">
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/01.svg" alt="Partner Image">
-					</div>
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/02.svg" alt="Partner Image">
-					</div>
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/01.svg" alt="Partner Image">
-					</div>
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/02.svg" alt="Partner Image">
-					</div>
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/01.svg" alt="Partner Image">
-					</div>
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/02.svg" alt="Partner Image">
-					</div>
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/01.svg" alt="Partner Image">
-					</div>
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/02.svg" alt="Partner Image">
-					</div>
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/01.svg" alt="Partner Image">
-					</div>
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/02.svg" alt="Partner Image">
-					</div>
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/01.svg" alt="Partner Image">
-					</div>
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/02.svg" alt="Partner Image">
-					</div>
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/01.svg" alt="Partner Image">
-					</div>
-					<div class="partners-autoplay__slide swiper-slide">
-						<img src="<?= IMAGES_PATH ?>/clients/02.svg" alt="Partner Image">
-					</div>
-				</div>
-			</div>
+			<?php get_template_part('template-parts/partners-slider') ?>
 		</div>
 	</section>
 	<!-- /.partners -->

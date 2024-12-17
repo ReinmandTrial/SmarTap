@@ -13,7 +13,7 @@ $contacts_subtitle = get_field('contacts_subtitle');
 
 ?>
 <?php get_header(); ?>
-<main class="page">
+<main class="page-section">
 
 	<div class="jumpscroll"></div>
 
@@ -30,41 +30,7 @@ $contacts_subtitle = get_field('contacts_subtitle');
 				</div>
 				<div class="contacts-form__body grid lg:grid-cols-2 lg:gap-5 gap-14">
 					<div class="contact-form">
-						<form action="#" class="form" method="POST">
-							<div class="form__row grid sm:grid-cols-2 gap-4">
-								<div class="form__col">
-									<label class="form-label" for="contactName">Full Name</label>
-									<input autocomplete="off" type="text" name="contactName" id="contactName" placeholder="Full Name" class="input">
-								</div>
-								<div class="form__col">
-									<label class="form-label" for="contactCompany">Company</label>
-									<input autocomplete="off" type="text" name="contactCompany" id="contactCompany" placeholder="Ex. Google" class="input">
-								</div>
-							</div>
-							<div class="form__row">
-								<div class="form__line">
-									<label class="form-label" for="contactEmail">Email</label>
-									<input autocomplete="off" type="text" name="contactEmail" id="contactEmail" placeholder="Ex. CEO" class="input">
-								</div>
-							</div>
-							<div class="form__row">
-								<div class="form__line">
-									<label class="form-label" for="contactMessage">Message</label>
-									<textarea autocomplete="off" name="contactMessage" placeholder="" id="contactMessage" class="input"></textarea>
-								</div>
-							</div>
-							<div class="form__row">
-								<div class="checkbox">
-									<input id="c_1" class="checkbox__input" type="checkbox" value="1" name="form[]">
-									<label for="c_1" class="checkbox__label">
-										<p class="checkbox__text">I accept the <a href="#">Terms and Conditions.</a></p>
-									</label>
-								</div>
-							</div>
-							<div class="form__row">
-								<button type="submit" class="button button-size-l button-primary w-full justify-center">Submit</button>
-							</div>
-						</form>
+						<?php echo do_shortcode('[contact-form-7 id="452dac2" title="Contact Us"]') ?>
 					</div>
 
 					<div class="contact-info grid sm:grid-cols-2 lg:gap-5 sm:gap-4 gap-8">

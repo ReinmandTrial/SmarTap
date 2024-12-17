@@ -10,6 +10,7 @@
 get_header();
 
 require_once('inc/get-permalink-by-slug.php');
+$product_id = get_the_ID();
 // Header 
 $product_category = get_field('product_category');
 $product_title = get_the_title();
@@ -20,7 +21,7 @@ $product_images_arr = get_field('product_images');
 $product_specifications = get_field('product_specifications_group');
 // Specification
 $product_specification = get_field('product_specifications_group');
-$product_file = get_field('product_pdf_file');
+$product_files = get_field('products_file_repeat');
 function print_specification($specification_arr)
 {
 	$more_specification = $specification_arr['more'];
@@ -44,12 +45,12 @@ function print_specification($specification_arr)
 		}
 	}
 
-	if (empty($more_specification) and empty($more_specification)) {
-		echo 'Empty';
+	if (empty($more_specification) and empty($main_specification)) {
+		echo 'This product does not have a specification';
 		return false;
 	}
 
-	if (!empty($more_specification)) {
+	if (!empty($main_specification)) {
 		specification_loop($main_specification);;
 	}
 
@@ -75,8 +76,10 @@ function formatBytes($bytes)
 	}
 }
 
+
+
 ?>
-<main class="page">
+<main class="page-section">
 	<section class="product-info pt-8 lg:pb-20 md:pb-16 pb-8">
 		<div class="product-info__container">
 			<div class="product-info__content">
@@ -150,7 +153,7 @@ function formatBytes($bytes)
 								</div>
 
 								<div class="info-text-reviews mb-4">
-									<?php echo do_shortcode('[site_reviews_summary hide="bars,if_empty,rating"]') ?>
+									<?php echo do_shortcode('[site_reviews_summary assigned_posts="' . $product_id . '" hide="bars,if_empty"]') ?>
 								</div>
 
 								<div class="info-text-actions flex items-center gap-2 justify-between">
@@ -159,7 +162,7 @@ function formatBytes($bytes)
 											Contact Us for price
 										</span>
 									</a>
-									<a href="#" class="button button-size-l button-tinted flex-1">
+									<a href="#compare" id='send-request' data-id-product='<?= $product_id ?>' data-request-html='false' class="button button-size-l button-tinted flex-1">
 										<span>
 											Add to Comparison list
 										</span>
@@ -191,7 +194,7 @@ function formatBytes($bytes)
 
 								</nav>
 								<div data-tabs-body class="info-text-tabs__content tabs__content">
-									<div class="info-text-tabs__body tabs__body">
+									<div class="info-text-tabs__body tabs__body" data-tabs-item hidden>
 										<div class="flex flex-col gap-5">
 											<div class="list-characteristics">
 												<ul>
@@ -199,62 +202,147 @@ function formatBytes($bytes)
 												</ul>
 											</div>
 
-											<?php if (!empty($product_file)): ?>
-												<div class="files-downloads">
-													<div class="file-download">
-														<div class="file-download__left">
-															<div class="flex items-center gap-3">
-																<div>
-																	<img src="<?= IMAGES_PATH ?>/icons/icon-pdf.webp" alt="Image">
-																</div>
-																<div class="flex flex-col gap-1">
-																	<p class="text-dark-800 label-large line-clamp-2"><?= $product_file['title'] ?></p>
-																	<span class="text-dark-600 body-small"><?= formatBytes($product_file['filesize']) ?></span>
+											<?php if (!empty($product_files)): ?>
+												<?php foreach ($product_files as $file): ?>
+													<?php $file = $file['product_pdf_file']; ?>
+													<?php if (empty($file)) continue; ?>
+													<div class="files-downloads">
+														<div class="file-download">
+															<div class="file-download__left">
+																<div class="flex items-center gap-3">
+																	<div>
+																		<img src="<?= IMAGES_PATH ?>/icons/icon-pdf.webp" alt="Image">
+																	</div>
+																	<div class="flex flex-col gap-1">
+																		<p class="text-dark-800 label-large line-clamp-2"><?= $file['title'] ?></p>
+																		<span class="text-dark-600 body-small"><?= formatBytes($file['filesize']) ?></span>
+																	</div>
 																</div>
 															</div>
-														</div>
-														<div class="file-download__right">
-															<a href="<?= $product_file['url'] ?>">
-																<span>Download</span>
-																<i>
-																	<svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-																		<path d="M1 19H13M7 1V15M7 15L12 10M7 15L2 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-																	</svg>
-																</i>
-															</a>
+															<div class="file-download__right">
+																<a href="<?= $file['url'] ?>">
+																	<span>Download</span>
+																	<i>
+																		<svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+																			<path d="M1 19H13M7 1V15M7 15L12 10M7 15L2 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+																		</svg>
+																	</i>
+																</a>
+															</div>
 														</div>
 													</div>
-												</div>
+												<?php endforeach; ?>
 											<?php endif ?>
 
 										</div>
 										<!-- /.flies-download -->
 									</div>
-									<div class="info-text-tabs__body tabs__body">
-										<?php echo do_shortcode('[site_reviews hide="title,date"]') ?>
+									<div class="info-text-tabs__body tabs__body" data-tabs-item hidden>
+										<?php
+										// Получение ID текущего поста
+										$current_post_id = get_the_ID();
+										$page = 1;
+										// Параметры для первой загрузки отзывов согласно новому формату
+										$args = array(
+											// 'post__in'      => [$current_post_id],
+											'assigned_posts' => (string)$current_post_id,
+											'per_page'      => 3,
+											'page'          => $page,
+											'status'        => 'approved',
+											'orderby'       => 'date',
+											'order'         => 'DESC',
+											'pagination'    => true,
+											// Добавьте дополнительные параметры при необходимости
+										);
 
-										<div class="reviews-products mb-5">
+										// Получение отзывов
+										if (function_exists('glsr_get_reviews')) {
+											$reviews = glsr_get_reviews($args);
+											$total_pages = $reviews->max_num_pages;
+										}
 
-										</div>
+										$next_page = ($page + 1 > $total_pages) ? 1 : $page + 1;
+										$prev_page = ($page - 1 <= 0) ? $total_pages : $page - 1;
 
-										<div class="flex items-center gap-4 flex-wrap">
-											<a href="#" class="button button-size-m button-primary">
-												<span>
-													Write a Review
-												</span>
+										if (!empty($reviews) and $reviews->total > 0) :
+										?>
+											<div id="reviews-container" data-product-id="<?= $current_post_id ?>" class="reviews-products mb-5">
+												<?php foreach ($reviews as $review) : ?>
+													<?php
+													// Получение данных отзыва
+													$review_id      = $review->ID;
+													$rating         = isset($review->rating) ? intval($review->rating) : 0;
+													$author_name    = !empty($review->author) ? $review->author : 'Anonym';
+													$company        = get_field('reviews_company_name', $review_id) ?: '';
+													$avatar_url     = !empty($review->avatar) ? $review->avatar : IMAGES_PATH . '/product-info/avatar-image-base.png';
+													$review_content = !empty($review->content) ? $review->content : '';
+													?>
+													<div class="review">
+														<div class="review__body">
+															<div class="review__rate">
+																<?php echo glsr_star_rating($rating); ?>
+															</div>
+															<div class="review__text body-medium text-dark-700">
+																<p><?php echo esc_html($review_content); ?></p>
+															</div>
+															<div class="review__profile profile-review">
+																<div class="profile-review__avatar">
+																	<img src="<?php echo esc_url($avatar_url); ?>" alt="Avatar">
+																</div>
+																<div class="profile-review__content">
+																	<h6 class="label-medium text-dark-800"><?php echo esc_html($author_name); ?></h6>
+																	<div class="text-dark-700 body-small">
+																		<span><?php echo esc_html($company); ?></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												<?php endforeach; ?>
+												<div class="flex items-center justify-between mt-8 gap-4 flex-wrap">
+													<a href="#" data-popup="#popupReview" class="button button-size-m button-primary">
+														<span>Write a Review</span>
+													</a>
+
+													<div class="reviews-pagination">
+														<a href="#" class="reviews-pagination-btn--prev" data-page="<?= $prev_page ?>">
+															<!-- SVG для кнопки "Назад" -->
+															<svg xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="0 0 9 16" fill="none">
+																<path d="M8 15L1 8L8 1" stroke="#0B98DE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+															</svg>
+														</a>
+														<span id="current-page" class="label-medium text-dark-700">Page <?= $page ?> of <?php echo $total_pages; ?></span>
+														<a href="#" class="reviews-pagination-btn--next" data-page="<?= $next_page ?>">
+															<!-- SVG для кнопки "Вперед" -->
+															<svg xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="0 0 9 16" fill="none">
+																<path d="M1 1L8 8L1 15" stroke="#0B98DE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+															</svg>
+														</a>
+													</div>
+												</div>
+											</div>
+										<?php
+										else :
+										?>
+											<a href="#" data-popup="#popupReview" class="button button-size-m button-primary">
+												<span>Write a Review</span>
 											</a>
-										</div>
+										<?php
+										endif;
+										?>
+
 									</div>
 								</div>
 							</div>
-
-
-
 						</div>
 
+
+
 					</div>
+
 				</div>
 			</div>
+		</div>
 		</div>
 	</section>
 	<!-- /.product-info -->
@@ -347,6 +435,84 @@ function formatBytes($bytes)
 	<?php get_template_part('template-parts/cta') ?>
 	<!-- /.cta-section -->
 </main>
+<div id="popupReview" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">
+				<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+					<path d="M13 13L7.00002 7.00002M7.00002 7.00002L1 1M7.00002 7.00002L13 1M7.00002 7.00002L1 13" stroke="#0F161C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+				</svg>
+			</button>
+			<div class="popup__body">
+				<div class="popup__header mb-5">
+					<h2 class="headline-medium text-dark-800">
+						Write a review
+					</h2>
+				</div>
+				<div class="popup__form">
+					<form action="#" id="review-form" class="form" method="POST" data-id="<?= $product_id ?>">
+						<div class="form__row grid sm:grid-cols-2 gap-3">
+							<div class="form__col">
+								<label class="form-label" for="reviewName">Full Name</label>
+								<input autocomplete="off" type="text" name="reviewName" id="reviewName" placeholder="Full Name" class="input">
+							</div>
+							<div class="form__col">
+								<label class="form-label" for="reviewCompany">Company</label>
+								<input autocomplete="off" type="text" name="reviewCompany" id="reviewCompany" placeholder="Ex. Google" class="input">
+							</div>
+						</div>
+						<div class="form__row">
+							<div class="form__col">
+								<label class="form-label" for="reviewPosition">Your Position</label>
+								<input autocomplete="off" type="text" name="reviewPosition" id="reviewPosition" placeholder="Ex. CEO" class="input">
+							</div>
+						</div>
+						<div class="form__row">
+							<div class="form__col">
+								<!-- <span class="gl-star-rating" data-rating="5">
+									<select class="star-rating" data-rating="5">
+										<option value="">Select a rating</option>
+										<option value="5">Excellent</option>
+										<option value="4">Very Good</option>
+										<option value="3">Average</option>
+										<option value="2">Poor</option>
+										<option value="1">Terrible</option>
+									</select> -->
+								<span class="gl-star-rating">
+									<select class="star-rating">
+										<option value="5">5 Stars</option>
+										<option value="4">4 Stars</option>
+										<option value="3">3 Stars</option>
+										<option value="2">2 Stars</option>
+										<option value="1">1 Star</option>
+									</select>
+									<span class="gl-star-rating--stars s50" data-rating="5">
+										<span data-value="1" class="gl-active"></span>
+										<span data-value="2" class="gl-active"></span>
+										<span data-value="3" class="gl-active"></span>
+										<span data-value="4" class="gl-active"></span>
+										<span data-value="5" class="gl-active gl-selected"></span>
+									</span>
+								</span>
+							</div>
+						</div>
+						<div class="form__row">
+							<div class="form__col">
+								<label class="form-label" for="reviewContent">Your Position</label>
+								<textarea autocomplete="off" name="reviewContent" id="msgReviewPopup" placeholder="" class="input"></textarea>
+							</div>
+						</div>
+						<div class="form__row">
+							<div class="form__col">
+								<button type="submit" class="button button-size-l button-primary w-full">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <?php
 get_footer();
 ?>

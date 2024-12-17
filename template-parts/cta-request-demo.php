@@ -24,21 +24,24 @@ $cta_request_image = $cta_request_group['image']
 						<?= $cta_request_subtitle ?>
 					</p>
 				</div>
-				<?php
-				if (!empty($cta_request_buttons)) {
-					$i = 1;
-					$button_class = ($i === 1) ? 'button-secondary' : 'button-border';
-					foreach ($cta_request_buttons as $button) {
+				<div class="flex items-center gap-4 sm:flex-row flex-col">
+					<?php
+					if (!empty($cta_request_buttons)) {
+						$i = 1;
 						$button_class = ($i === 1) ? 'button-secondary' : 'button-border';
-						$i++;
-				?>
-						<a href="#<?= $button['url'] ?>" <?= $button['target'] ?>class="button <?= $button_class ?> button-size-l justify-center sm:w-auto w-full">
-							<span><?= $button['title'] ?></span>
-						</a>
-				<?php
+						foreach ($cta_request_buttons as $button) {
+							$button_class = ($i === 1) ? 'button-secondary' : 'button-border';
+							$i++;
+					?>
+							<a href="#<?= $button['url'] ?>" <?= $button['target'] ?>class="button <?= $button_class ?> button-size-l justify-center sm:w-auto w-full">
+								<span><?= $button['title'] ?></span>
+							</a>
+					<?php
+						}
 					}
-				}
-				?>
+					?>
+				</div>
+
 
 			</div>
 			<div class="cta-section__right right-cta">

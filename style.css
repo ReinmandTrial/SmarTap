@@ -8,7 +8,6 @@ License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: smartap
 */
-
 @import url(https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,regular,500,600,700,800,900);
 :root {
   --dark-900: rgba(0, 0, 0, 1);
@@ -491,9 +490,6 @@ video {
 [hidden]:where(:not([hidden="until-found"])) {
   display: none
 }
-.container {
-  width: 100%
-}
 .visible {
   visibility: visible
 }
@@ -532,6 +528,9 @@ video {
 }
 .mb-8 {
   margin-bottom: 2rem
+}
+.mt-8 {
+  margin-top: 2rem
 }
 .line-clamp-2 {
   overflow: hidden;
@@ -686,6 +685,11 @@ video {
 }
 .text-light-900 {
   color: #fff
+}
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)
 }
 .outline {
   outline-style: solid
@@ -861,32 +865,26 @@ textarea {
 textarea.input {
   resize: none
 }
-.checkbox {
-  position: relative
-}
-.checkbox:not(:last-child) {
-  margin-bottom: em(5)
-}
-.checkbox__input {
+.checkbox__input input {
   position: absolute;
   width: 0;
   height: 0;
   opacity: 0
 }
-.checkbox__input:focus-visible+.checkbox__label:before {
+.checkbox__input input:focus-visible+.wpcf7-list-item-label:before {
   box-shadow: rgba(11,152,222,.24) 0 0 2px
 }
-.checkbox__input:checked+.checkbox__label:before {
+.checkbox__input input:checked+.wpcf7-list-item-label:before {
   background: var(--brand-main);
   border-color: var(--brand-main)
 }
-.checkbox__label {
+.wpcf7-list-item-label {
   cursor: pointer;
   display: inline-flex;
   position: relative;
   gap: 10px
 }
-.checkbox__label:before {
+.wpcf7-list-item-label:before {
   content: "";
   align-self: flex-start;
   flex: 0 0 1.25rem;
@@ -895,7 +893,7 @@ textarea.input {
   border-radius: .375rem;
   border: 2px solid var(--dark-700)
 }
-.checkbox__label::after {
+.wpcf7-list-item-label::after {
   content: "";
   width: .875rem;
   height: .875rem;
@@ -906,6 +904,9 @@ textarea.input {
   -webkit-mask: url(../img/icons/check.svg) 0 0/cover no-repeat;
   background-color: #fff
 }
+.wpcf7-list-item {
+  margin: 0;
+}
 .checkbox__text {
   align-self: center;
   font-size: .875rem;
@@ -913,15 +914,19 @@ textarea.input {
   font-weight: 400;
   color: var(--dark-800)
 }
-.checkbox__text a {
+.checkbox a {
   transition-property: color,background-color,border-color,text-decoration-color,fill,stroke;
   transition-timing-function: cubic-bezier(.4,0,.2,1);
   transition-duration: 150ms;
   text-decoration: underline;
   color: var(--brand-main)
 }
-.checkbox__text a:hover {
+.checkbox a:hover {
   text-decoration: none
+}
+.checkbox > p {
+  display: flex;
+  gap: 2px;
 }
 .header .menu__body ul {
   display: flex;
@@ -940,7 +945,7 @@ textarea.input {
 .header-mob-menu {
   background: #f7f8fa;
   padding: 6rem 2rem 1rem;
-  position: absolute;
+  position: fixed;
   transition: all .3s;
   opacity: 0;
   pointer-events: none;
@@ -1015,6 +1020,74 @@ textarea.input {
 }
 .icon-menu {
   display: none
+}
+body::after {
+  content: "";
+  background-color: rgba(0,0,0,.2);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity .8s ease 0s;
+  pointer-events: none;
+  z-index: 149
+}
+.popup-show body::after {
+  opacity: 1
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition: visibility .8s ease 0s;
+  visibility: hidden;
+  pointer-events: none
+}
+.popup_show {
+  z-index: 150;
+  visibility: visible;
+  overflow: auto;
+  pointer-events: auto
+}
+.popup_show .popup__content {
+  visibility: visible;
+  -webkit-transform: scale(1);
+  transform: scale(1)
+}
+.popup__wrapper {
+  flex-direction: column;
+  min-height: 100%;
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.popup__content {
+  visibility: hidden;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  transition: -webkit-transform .3s ease 0s;
+  transition: transform .3s ease 0s;
+  transition: transform .3s ease 0s,-webkit-transform .3s ease 0s;
+  background-color: var(--brand-25);
+  width: 100%;
+  max-width: 37.5rem
+}
+.lock .popup__content {
+  visibility: visible
+}
+.popup__close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem
+}
+.popup__header {
+  text-align: center
 }
 .spollers {
   display: grid;
@@ -1219,6 +1292,8 @@ textarea.input {
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: .5rem;
   transition-property: color,background-color,border-color,text-decoration-color,fill,stroke;
   transition-timing-function: cubic-bezier(.4,0,.2,1);
@@ -1518,11 +1593,62 @@ textarea.input {
   pointer-events: none;
   transition: all .3s
 }
+.review:not(:last-child) {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--dark-300)
+}
+.review__body {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem
+}
+.review__profile {
+  display: flex;
+  align-items: center;
+  gap: .75rem
+}
+.review__profile .profile-review__avatar img {
+  width: 3rem;
+  height: 3rem;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 50%;
+  max-width: 3rem;
+  max-height: 3rem
+}
+.reviews-pagination {
+  display: flex;
+  align-items: center;
+  gap: 1rem
+}
+.reviews-pagination .reviews-pagination-btn--next,
+.reviews-pagination .reviews-pagination-btn--prev {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s;
+  border-radius: .625rem
+}
+.reviews-pagination .reviews-pagination-btn--next:hover,
+.reviews-pagination .reviews-pagination-btn--prev:hover {
+  background-color: var(--brand-25)
+}
 .header {
   padding: .5rem 0;
   min-height: 4.5rem;
-  position: relative;
-  z-index: 15
+  position: absolute;
+  z-index: 15;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all .3s;
+  background-color: #f7f8fa
+}
+.header._header-scroll {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)
 }
 .menu-open .header {
   background-color: #f7f8fa
@@ -1534,6 +1660,18 @@ textarea.input {
 .header__logo img {
   max-width: 11.125rem;
   width: 100%
+}
+.header._header-scroll {
+  top: -100%;
+  position: fixed;
+  transition: all .3s
+}
+.header._header-show {
+  top: 0;
+  transition: all .3s
+}
+.page-section {
+  padding-top: 4.5625rem;
 }
 .footer__form .form-group {
   display: flex;
@@ -1619,7 +1757,16 @@ textarea.input {
   position: absolute;
   inset: 0
 }
-.jumbotron__background img {
+.jumbotron__background::before {
+  content: "";
+  background-color: rgba(0,0,0,.5);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 0 0 2rem 2rem
+}
+.jumbotron__background img,
+.jumbotron__background video {
   border-radius: 0 0 2rem 2rem;
   max-width: 100%;
   width: 100%;
@@ -1706,9 +1853,6 @@ textarea.input {
   width: 100%;
   -o-object-fit: cover;
   object-fit: cover
-}
-.section-compare:empty {
-  padding: 0;
 }
 .section-compare-table .product-in-table__header {
   max-width: 12.5rem;
@@ -1979,6 +2123,9 @@ textarea.input {
     line-height: 1.4;
     font-weight: 400
   }
+  .popup {
+    padding: 30px 10px
+  }
   .tabs-vertical .tabs__title-button {
     gap: 1rem
   }
@@ -2016,6 +2163,10 @@ textarea.input {
   }
 }
 @media (min-width:47.99875em) {
+  .popup__content {
+    padding: 2.5rem;
+    border-radius: 1.5rem
+  }
   .spollers__title {
     padding: 1.5rem 4rem 1.5rem 1.5rem
   }
@@ -2042,6 +2193,11 @@ textarea.input {
   }
   .product-item__body {
     padding: 2.5rem
+  }
+  .reviews-pagination .reviews-pagination-btn--next,
+  .reviews-pagination .reviews-pagination-btn--prev {
+    width: 3rem;
+    height: 3rem
   }
   .footer__email-promotions .email-promotions__label {
     font-size: clamp(var(--body-small),2vw,var(--body-large));
@@ -2137,6 +2293,9 @@ textarea.input {
   .section-heading {
     margin-bottom: 3.5rem
   }
+  .video-container {
+    border-radius: 2rem
+  }
   .video-container::before {
     border-radius: 2rem
   }
@@ -2188,9 +2347,6 @@ textarea.input {
   }
 }
 @media (min-width:640px) {
-  .container {
-    max-width: 640px
-  }
   .sm\:mb-12 {
     margin-bottom: 3rem
   }
@@ -2248,9 +2404,6 @@ textarea.input {
   }
 }
 @media (min-width:768px) {
-  .container {
-    max-width: 768px
-  }
   .md\:mb-12 {
     margin-bottom: 3rem
   }
@@ -2263,9 +2416,6 @@ textarea.input {
   }
 }
 @media (min-width:1024px) {
-  .container {
-    max-width: 1024px
-  }
   .phone-block-icon {
     display: none
   }
@@ -2302,16 +2452,6 @@ textarea.input {
   }
   .lg\:pb-20 {
     padding-bottom: 5rem
-  }
-}
-@media (min-width:1280px) {
-  .container {
-    max-width: 1280px
-  }
-}
-@media (min-width:1536px) {
-  .container {
-    max-width: 1536px
   }
 }
 @media (max-width:40em) {
@@ -2403,6 +2543,10 @@ textarea.input {
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg)
   }
+  .popup__content {
+    padding: 1.25rem;
+    border-radius: .625rem
+  }
   .spollers__title {
     padding: 1rem 2.375rem 1rem 1.5rem
   }
@@ -2429,6 +2573,9 @@ textarea.input {
   .section-heading {
     margin-bottom: 2rem
   }
+  .video-container {
+    border-radius: 1rem
+  }
   .video-container::before {
     border-radius: 1rem
   }
@@ -2449,6 +2596,11 @@ textarea.input {
     position: absolute;
     bottom: 1.25rem;
     right: .75rem
+  }
+  .reviews-pagination .reviews-pagination-btn--next,
+  .reviews-pagination .reviews-pagination-btn--prev {
+    width: 1.75rem;
+    height: 1.75rem
   }
   .header__menu .menu__body {
     display: none
@@ -2584,6 +2736,9 @@ textarea.input {
   .header-mob-menu-bottom .header-mob-bottom-contact {
     flex: 1
   }
+  .popup {
+    padding: 1.875rem 0
+  }
   .header {
     display: flex;
     align-items: center
@@ -2667,6 +2822,9 @@ textarea.input {
 @media (max-width:61.99875em)and (min-width:47.99875em) {
   .section-heading {
     margin-bottom: 3rem
+  }
+  .video-container {
+    border-radius: 1.5rem
   }
   .video-container::before {
     border-radius: 1.5rem

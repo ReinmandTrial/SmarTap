@@ -17,7 +17,13 @@ $footer_title = get_field('footer_title', 'options');
 				<div class="top-footer__content">
 					<div class="top-footer__left">
 						<div class="footer__logo footer__logo-mob lg:hidden lg:mb-0 md:mb-12 mb-8">
-							<?= $logo_img ?>
+							<?php
+							if (function_exists('the_custom_logo') & has_custom_logo()) {
+								the_custom_logo(); // Выводим кастомное лого
+							} else {
+								echo '<img src="' . IMAGES_PATH . '/logo.webp" alt="Logo Main">';
+							}
+							?>
 						</div>
 						<div class="footer__email-promotions email-promotions sm:mb-12">
 							<div class="email-promotions__label body-large text-dark-700 sm:mb-6 mb-4">
@@ -25,81 +31,22 @@ $footer_title = get_field('footer_title', 'options');
 									<?= $footer_title ?>
 								</p>
 							</div>
-							<form action="files/sendmail/sendmail.php" class="footer__form form" method="POST">
-								<div class="form-group sm:flex-row flex-col">
-									<div class="flex flex-col gap-2 sm:w-auto w-full">
-										<input autocomplete="off" type="text" name="form[]" data-error="Помилка" placeholder="Enter your email" class="input">
-										<p class="text-base text-dark-600">By subscribing you agree to with our Privacy Policy.</p>
-									</div>
-									<button type="submit" class="button button-size-l button-primary sm:w-auto w-full justify-center">
-										<span>
-											Subscribe
-										</span>
-									</button>
-								</div>
-
-							</form>
+							<?php echo do_shortcode('[contact-form-7 id="03ac6be" title="Footer form"]') ?>
 						</div>
 						<div class="footer__logo footer__logo-pc lg:block hidden">
-							<img src="<?= IMAGES_PATH ?>/logo.webp" alt="Logo Main">
+							<?php
+							if (function_exists('the_custom_logo') & has_custom_logo()) {
+								the_custom_logo(); // Выводим кастомное лого
+							} else {
+								echo '<img src="' . IMAGES_PATH . '/logo.webp" alt="Logo Main">';
+							}
+							?>
 						</div>
 					</div>
 					<div class="top-footer__right">
-						<?php if (is_active_sidebar('footer_sidebar')) ?>
 						<?php if (is_active_sidebar('footer_sidebar')) : ?>
 							<?php dynamic_sidebar('footer_sidebar'); ?>
 						<?php endif; ?>
-						<div class="footer__menu menu">
-							<nav class="menu__body">
-
-								<!-- <p class="text-brand-main title-medium mb-5 uppercase">About Us</p> -->
-
-
-								<?php
-								// wp_nav_menu([
-								// 	'theme_location'  => 'about_us_menu',
-								// 	'container'       => '',
-								// 	'container_class' => '',
-								// 	'container_id'    => '',
-								// 	'menu_class'      => '',
-								// 	'menu_id'         => '',
-								// 	'echo'            => true,
-								// 	'fallback_cb'     => 'wp_page_menu',
-								// 	'before'          => '',
-								// 	'after'           => '',
-								// 	'link_before'     => '',
-								// 	'link_after'      => '',
-								// 	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-								// 	'depth'           => 0,
-								// 	'walker'          => '',
-								// ])
-								?>
-							</nav>
-						</div>
-						<div class="footer__menu menu">
-							<nav class="menu__body">
-								<!-- <p class="text-brand-main title-medium mb-5 uppercase">Customer Service</p> -->
-								<?php
-								// wp_nav_menu([
-								// 	'theme_location'  => 'customer_service_menu',
-								// 	'container'       => '',
-								// 	'container_class' => '',
-								// 	'container_id'    => '',
-								// 	'menu_class'      => '',
-								// 	'menu_id'         => '',
-								// 	'echo'            => true,
-								// 	'fallback_cb'     => 'wp_page_menu',
-								// 	'before'          => '',
-								// 	'after'           => '',
-								// 	'link_before'     => '',
-								// 	'link_after'      => '',
-								// 	'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-								// 	'depth'           => 0,
-								// 	'walker'          => '',
-								// ])
-								?>
-							</nav>
-						</div>
 					</div>
 				</div>
 			</div>
