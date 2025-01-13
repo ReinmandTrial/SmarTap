@@ -8,6 +8,9 @@ License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: smartap
 */
+
+
+
 @import url(https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,regular,500,600,700,800,900);
 :root {
   --dark-900: rgba(0, 0, 0, 1);
@@ -151,6 +154,51 @@ Text Domain: smartap
 *::before {
   display: inline-block
 }
+
+.partners {
+    display: none !important;
+}
+
+[hidden]:where(:not([hidden="until-found"])) {
+    display: none !important;
+}
+
+.compare-header-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 480px){
+  .compare-header-button {
+    padding: 8px !important;
+    min-width: 2.5rem !important;
+  }
+  .compare-header-button svg {
+    width: 18px;
+    height: 18px;
+  }
+  .compare-header-button .count  {
+    font-size: .5625rem !important;
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+}
+.compare-header-button .count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: -50%;
+    top: -50%;
+    transform: translate(-100%, 85%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 14px;
+}
+
 body,
 html {
   height: 100%;
@@ -2703,18 +2751,19 @@ body::after {
 @media screen and (max-width:47.99875em) {
   .section-compare-table table {
     border: 0;
-    width: auto
+    width: auto;
+    min-width: -webkit-fill-available;
   }
   .section-compare-table table thead th:first-child {
     display: none
   }
   .section-compare-table table tr {
     display: grid;
-    grid-template-columns: repeat(3,1fr)
+    grid-template-columns: repeat(var(--count),1fr)
   }
   .section-compare-table table tr td:first-child {
     background: #f7f8fa;
-    grid-column: span 3/span 3
+    grid-column: span var(--count)/span var(--count)
   }
 }
 @media (max-width:29.99875em) {

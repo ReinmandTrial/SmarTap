@@ -1,11 +1,24 @@
 <?php
 
+// Проверяем, если $compare_ids пустой, задаем его как null
 if (empty($compare_ids)) $compare_ids = null;
+
+// Получаем список товаров для сравнения
 $arr_compare = get_compare_list($compare_ids);
 
+// Проверяем, что результат не является false и что $arr_compare['first_row'] существует
+if (is_array($arr_compare) && isset($arr_compare['first_row']) && is_array($arr_compare['first_row'])) {
+    // Подсчитываем количество товаров, если это массив
+    $count_products = count($arr_compare['first_row']);
+} else {
+    // Если $arr_compare['first_row'] не существует или не является массивом, устанавливаем количество в 0
+    $count_products = 0;
+}
+
 ?>
+
 <?php if ($arr_compare): ?>
-	<section class="section-compare lg:py-20 md:py-16 py-10">
+	<section class="section-compare" id="compare">
 		<div class="section-compare__container">
 			<div class="section-compare__content">
 				<div class="section-compare__heading section-heading flex items-center gap-4 flex-wrap justify-between">
@@ -23,7 +36,7 @@ $arr_compare = get_compare_list($compare_ids);
 					</div>
 				</div>
 				<div class="section-compare__body">
-					<div class="section-compare-table">
+					<div class="section-compare-table" style="--count: <?= $count_products; ?>"> <!-- Передаем количество товаров в CSS переменную -->
 						<table>
 							<thead>
 								<tr>
@@ -38,6 +51,7 @@ $arr_compare = get_compare_list($compare_ids);
 									</th>
 									<?php
 									foreach ($arr_compare['first_row'] as $product) {
+               
 									?>
 										<th scope="col">
 											<div class="section-compare-table-product product-in-table">
@@ -56,7 +70,7 @@ $arr_compare = get_compare_list($compare_ids);
 												</div>
 											</div>
 										</th>
-									<?
+									<?php
 									}
 									?>
 								</tr>
@@ -101,5 +115,5 @@ $arr_compare = get_compare_list($compare_ids);
 		</div>
 	</section>
 <?php else: ?>
-	<section class="section-compare lg:py-20 md:py-16 py-10"></section>
+	<section class="section-compare"></section>
 <?php endif; ?>

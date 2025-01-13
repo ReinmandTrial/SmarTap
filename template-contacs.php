@@ -113,11 +113,13 @@ $contacts_subtitle = get_field('contacts_subtitle');
 
 
 									<?php
-									$map = get_sub_field('map');
+									$coordinate = get_sub_field('coordinate');
+									$lat = $coordinate ? $coordinate['lat'] : '';
+									$lng = $coordinate ? $coordinate['lng'] : '';
 									$title = get_sub_field('title');
 									$text = get_sub_field('text');
 									?>
-									<details class="spollers__item card-address" data-address="https://www.google.com/maps/embed/v1/view?key=AIzaSyB7EWRjbOhYVQQgWxqwPWFbGJJ_YZrmrD0&center=<?= $map['lat'] ?>,<?= $map['lng'] ?>&zoom=14">
+									<details class="spollers__item card-address" data-address="https://www.google.com/maps/embed/v1/view?key=AIzaSyB7EWRjbOhYVQQgWxqwPWFbGJJ_YZrmrD0&center=<?= $lat ?>,<?= $lng ?>&zoom=14">
 										<summary class="spollers__title"><?= $title ?></summary>
 										<div class="spollers__body">
 											<div class="body-medium text-dark-600">

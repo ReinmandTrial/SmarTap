@@ -34,5 +34,10 @@ function acf_option_pages()
 			'menu_title'  => ('Socials'),
 			'parent_slug' => $parent['menu_slug'],
 		));
+		$child = acf_add_options_page(array(
+			'page_title'  => ('API Keys'),
+			'menu_title'  => ('API Keys'),
+			'parent_slug' => $parent['menu_slug'],
+		));
 	}
 }

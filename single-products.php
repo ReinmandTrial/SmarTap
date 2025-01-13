@@ -157,16 +157,15 @@ function formatBytes($bytes)
 								</div>
 
 								<div class="info-text-actions flex items-center gap-2 justify-between">
-									<a href="<?= get_permalink_by_slug('contacts') ?>" class="button button-size-l button-primary flex-1">
+									<a href="<?= get_permalink_by_slug('contacts') ?>" class="button button-size-l button-primary flex-1 ">
 										<span>
 											Contact Us for price
 										</span>
 									</a>
-									<a href="#compare" id='send-request' data-id-product='<?= $product_id ?>' data-request-html='false' class="button button-size-l button-tinted flex-1">
-										<span>
-											Add to Comparison list
-										</span>
-									</a>
+									<!-- href="<?php echo site_url('/products/'); ?>#section-compare" -->
+									<button type="button" id="send-request" data-section-goto=".section-compare" data-id-product="<?= $product_id ?>" data-redirect="<?= esc_url(home_url('/products/#compare')) ?>" data-request-html="false" class="button button-size-l button-tinted flex-1 product-info-compare">
+										<span>Add to Comparison list</span>
+									</button>
 								</div>
 
 

@@ -349,7 +349,7 @@ $why_smartap_subtitle = $why_smartap_header['subtitle'];
 	<!-- /.why-us -->
 
 
-	<section class="partners lg:py-20 md:py-16 py-10">
+	<section class="partners lg:py-20 md:py-16 py-10 !hidden">
 		<div class="partners__container">
 			<div class="partners__content">
 				<div class="partners__heading mb-8">

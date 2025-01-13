@@ -159,20 +159,10 @@ function smartap_enqueue_styles()
 		'nonceReview'   => wp_create_nonce('load_reviews_nonce'), // Генерация уникального ключа
 		'nonceReviewForm'   => wp_create_nonce('ajax_form_review') // Генерация уникального ключа
 	]);
-
-	// Enqueue google maps api
-	wp_enqueue_script(
-		'smartap-map-api',
-		'https://maps.googleapis.com/maps/api/js?key=AIzaSyDPIlQsbeMX0GZc_kLkyXFTqGl8JDRxwEo&callback=initMap&_v=20241205151347',
-		array('smartap-app'),
-		null,
-		[
-			'in_footer' => true,
-			'strategy'  => 'defer',
-		]
-	);
 }
 add_action('wp_enqueue_scripts', 'smartap_enqueue_styles');
+
+
 
 // Add custom styles to WordPress admin area and customizer preview
 define('CUSTOM_ADMIN_CSS', '/* Fix style widget */
@@ -207,3 +197,5 @@ require_once('inc/custom-review-summary.php');
 require_once('inc/review-ajax.php');
 
 require_once('inc/ajax-form-review.php');
+
+require_once('inc/google_map_api.php');

@@ -84,7 +84,7 @@ require_once('inc/get-permalink-by-slug.php')
 										</div>
 										<div class="product-item__footer">
 											<div class="flex items-center justify-between gap-4">
-												<a href="#compare" id='send-request' data-id-product='<?= $product_id ?>' data-request-html='true' data-target-section='.section-compare' class="button button-size-l button-tinted">
+												<a href="#compare" id='send-request' data-id-product='<?= $product_id ?>' data-request-html='true' data-target-section='.section-compare' class="button button-size-l button-tinted product-item-compare">
 													<span>
 														Compare
 													</span>

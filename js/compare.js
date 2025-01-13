@@ -3,105 +3,217 @@ var StarRating=function(){"use strict";function e(e,t){if(!(e instanceof t))thro
 
 // My code 
 
+
 window.addEventListener('load', () => {
-	function addHandlerButtonClose() {
-		const buttonsClose = document.querySelectorAll('.button-close')
-		buttonsClose.forEach(element => {
-			element.addEventListener('click', compareHandler);
-		});
-	}
+  // Функция для добавления обработчиков кнопок "Закрыть"
+  function addHandlerButtonClose() {
+      const buttonsClose = document.querySelectorAll('.button-close');
+      buttonsClose.forEach(element => {
+          element.addEventListener('click', compareHandler);
+      });
+  }
 
-	const button = document.querySelectorAll('#send-request');
+  // Обработчик для кнопок .compare-btn-products (много)
+  const compareBtnProducts = document.querySelectorAll('.compare-btn-products');
+  compareBtnProducts.forEach(button => {
+      button.addEventListener('click', compareHandler);
+  });
 
-	button.forEach(element => {
-		element.addEventListener('click', compareHandler);
-	});
-	addHandlerButtonClose();
-	
-	
-	var stars = new StarRating('.star-rating', {
-		tooltip: false,
-		prebuilt: true,
-		clearable: false
-	});
-	const wrapperStar = document.querySelector('.gl-star-rating--stars');
-	if(wrapperStar) {
-		wrapperStar.dataset.rating = 5;
+  // Обработчики для кнопок с добавлением/удалением товаров
+  const buttons = document.querySelectorAll('#send-request');
+  buttons.forEach(element => {
+      element.addEventListener('click', compareHandler);
+  });
+  
+  addHandlerButtonClose();
 
-		const starsNoe = document.querySelector('.gl-star-rating--stars').childNodes
-		for(let i = 0; i < starsNoe.length; i++) {
-			if(i === 4) {
-				starsNoe[i].classList.add('gl-selected')
-			}
-			starsNoe[i].classList.add('gl-active');
-		}
-	}
+  // Обработчик для кнопок .product-info-compare
+  // const compareProductButtons = document.querySelectorAll('.product-info-compare');
+  // compareProductButtons.forEach(button => {
+  //     button.addEventListener('click', handleCompareProductClick);
+  // });
+
+  // Функция для сохранения ID продукта в localStorage
+  function saveToLocalStorage(idProduct) {
+      const products = getFromLocalStorage();
+      if (!products.includes(idProduct)) {
+          products.push(idProduct);
+          localStorage.setItem('compareProducts', JSON.stringify(products));
+      }
+  }
+
+  // Функция для удаления ID продукта из localStorage
+  function removeFromLocalStorage(idProduct) {
+      let products = getFromLocalStorage();
+      products = products.filter(productId => productId !== idProduct);
+      localStorage.setItem('compareProducts', JSON.stringify(products));
+  }
+
+  // Функция для получения всех продуктов из localStorage
+  function getFromLocalStorage() {
+      const storedData = localStorage.getItem('compareProducts');
+      return storedData ? JSON.parse(storedData) : [];
+  }
+
+  // Функция для восстановления текста кнопок на "Added to List"
+  function restoreButtonTexts() {
+      const products = getFromLocalStorage();
+      if (!products.length) return;
+
+      products.forEach(idProduct => {
+          const buttons = document.querySelectorAll(`#send-request[data-id-product="${idProduct}"]`);
+          if (buttons.length) {
+              buttons.forEach(button => {
+                  if (!button.dataset.originalText) {
+                      button.dataset.originalText = button.textContent; // Сохраняем оригинальный текст
+                  }
+                  button.textContent = 'Added to List'; // Устанавливаем новый текст
+              });
+          }
+      });
+  }
+
+  // Функция для обновления кнопки сравнения (показывать/скрывать)
+  function updateCompareHeaderButton() {
+      const compareHeaderButton = document.querySelector('.compare-header-button');
+      const countElement = compareHeaderButton.querySelector('.count');
+      const products = getFromLocalStorage();
+
+      if (products.length > 0) {
+          compareHeaderButton.removeAttribute('hidden'); // Показываем кнопку
+          countElement.textContent = products.length; // Обновляем количество товаров
+      } else {
+          compareHeaderButton.setAttribute('hidden', 'true'); // Скрываем кнопку
+      }
+  }
+
+  // Основной обработчик для добавления и удаления товаров в/из сравнение
+  function compareHandler(event) {
+    const { 
+        idProduct, 
+        typeRequest = 'add', 
+        requestHtml = false, 
+        targetSection = '.section-compare', 
+        redirect = false 
+    } = this.dataset;
+
+      const data = new URLSearchParams({
+          action: 'compare',
+          security: ajaxData.nonce,
+          idProduct,
+          typeRequest,
+          requestHtml
+      });
+
+      fetch(ajaxData.ajaxUrl, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: data.toString(),
+      })
+      .then(response => response.json())
+      .then(answer => {
+          if (typeRequest === 'remove') {
+              restoreOriginalText(idProduct);
+              removeFromLocalStorage(idProduct);
+              updateCompareHeaderButton();
+          } else {
+              updateButtonsText(idProduct);
+              saveToLocalStorage(idProduct);
+              updateCompareHeaderButton();
+          }
+
+          if (requestHtml && requestHtml !== 'false') {
+              const targetElement = document.querySelector(targetSection);
+              targetElement.innerHTML = answer.data.html;
+              targetElement.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+              });
+              addHandlerButtonClose();
+          }
+
+          if(redirect) {
+            window.location.href = redirect;
+          }
+
+      })
+      .catch(err => {
+          console.error(err);
+      });
+  }
+
+  // Функция для обновления текста кнопок на "Added to List"
+  function updateButtonsText(idProduct) {
+      const buttons = document.querySelectorAll(`#send-request[data-id-product="${idProduct}"]`);
+      buttons.forEach(button => {
+          if (!button.dataset.originalText) {
+              button.dataset.originalText = button.textContent; // Сохраняем оригинальный текст
+          }
+          button.textContent = 'Added to List'; // Устанавливаем новый текст
+      });
+  }
+
+  // Функция для восстановления исходного текста кнопок
+  function restoreOriginalText(idProduct) {
+      const buttons = document.querySelectorAll(`#send-request[data-id-product="${idProduct}"]`);
+      buttons.forEach(button => {
+          if (button.dataset.originalText) {
+              button.textContent = button.dataset.originalText; // Восстанавливаем оригинальный текст
+          }
+      });
+  }
 
 
 
-	function compareHandler() {
-		console.log(this);
-		event.preventDefault();
-		const {
-			idProduct, 
-			typeRequest = 'add', 
-			requestHtml = false, 
-			targetSection = '.section-compare'
-		} = this.dataset;
-		const targetElement = document.querySelector(targetSection);
+  // Обработчик для кнопок .product-info-compare
+//   function handleCompareProductClick(event) {
+//     const idProduct = this.dataset.idProduct;
+//     const products = getFromLocalStorage();
 
-		const data = new URLSearchParams({
-			action: 'compare',
-			security: ajaxData.nonce,
-			idProduct,
-			typeRequest,
-			requestHtml
-		})
-		console.log(`Target element ${targetElement}`)
-		targetElement.classList.add('load')
-		fetch(ajaxData.ajaxUrl, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-			},
-			body: data.toString(),
-		})
-		.then(response => response.json())
-		.then(answer => {
-			if(requestHtml && requestHtml !== 'false') {
-				
-				targetElement.innerHTML = answer.data.html;
-				targetElement.classList.remove('load')
-				targetElement.scrollIntoView({
-					behavior: 'smooth',
-					block: 'start'
-				})
-				addHandlerButtonClose();
-			} else {
-				alert('The product was successfully added to the comparison');
-			}
+//     // Если товар уже добавлен в сравнение, обновляем секцию через существующий compareHandler
+//     if (products.includes(idProduct)) {
+//         // Используем compareHandler для обновления секции
+//         const compareHandlerData = {
+//             idProduct,
+//             typeRequest: 'view',
+//             requestHtml: true,
+//             targetSection: '.section-compare'
+//         };
 
-			console.log(data)
-		})
-		.catch(err => {
-			alert(err.message)
-			console.error(err.message)
-		})
-	}
-	
-	
-})
+//         compareHandler.call({ dataset: compareHandlerData });
 
+//         // Редирект после завершения обновления секции
+//         setTimeout(() => {
+//             window.location.href = '/products/#section-compare';
+//         }, 500); // Небольшая задержка для завершения скролла и обновления
+//     } else {
+//         // Если товара нет, добавляем его и обновляем UI
+//         saveToLocalStorage(idProduct); // Добавляем товар в localStorage
+//         updateButtonsText(idProduct);
+//         updateCompareHeaderButton();
+
+//         // Редирект после завершения всех операций
+//         setTimeout(() => {
+//             window.location.href = '/products/#section-compare';
+//         }, 300);
+//     }
+// }
+
+
+
+  // Восстановление текста кнопок и обновление кнопки сравнения при загрузке страницы
+  restoreButtonTexts();
+  updateCompareHeaderButton();
+});
 
 function setHandlerByButtons() {
 	const reviewButtonPrev = document.querySelector('.reviews-pagination-btn--prev');
 	const reviewButtonNext = document.querySelector('.reviews-pagination-btn--next');
 	
-	if(reviewButtonPrev) {
-		reviewButtonPrev.addEventListener('click', reviewsHandler);
-		reviewButtonNext.addEventListener('click', reviewsHandler);
-	}
-	
+	if(reviewButtonPrev) reviewButtonPrev.addEventListener('click', reviewsHandler);
+	if(reviewButtonNext) reviewButtonNext.addEventListener('click', reviewsHandler);
 }
 
 setHandlerByButtons();
@@ -145,52 +257,59 @@ function reviewsHandler(event) {
 
 
 const form = document.querySelector("#review-form");
-if(form) {
-	form.addEventListener("submit", function (event) {
-		event.preventDefault();
-	
-		// Собираем данные формы в объект
-		const formData = {};
-		const id = this.dataset.id;
-		const inputs = this.querySelectorAll('input, textarea');
-		const rating = document.querySelector('.gl-star-rating--stars').dataset.rating;
-	
-		inputs.forEach(input => {
-				if (input.type === 'checkbox') {
-						formData[input.name] = input.checked;
-				} else if (input.type === 'radio') {
-						if (input.checked) {
-								formData[input.name] = input.value;
-						}
-				} else {
-						formData[input.name] = input.value;
-				}
-		});
-	
-	
-		const data = new URLSearchParams({
-			action: 'form_review',
-			security: ajaxData.nonceReviewForm,
-			id: id,
-			rating,
-			...formData
-		})
-	
-		fetch(ajaxData.ajaxUrl, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-			},
-			body: data.toString(),
-		})
-		.then(response => response.json())
-		.then(data => {
-			if(data.success) {
-				alert('Your review has been added')
+
+form.addEventListener("submit", function (event) {
+	event.preventDefault();
+
+	// Собираем данные формы в объект
+	const formData = {};
+	const id = this.dataset.id;
+	const inputs = this.querySelectorAll('input, textarea');
+	const rating = document.querySelector('.gl-star-rating--stars').dataset.rating;
+	console.log(rating)
+
+	inputs.forEach(input => {
+			if (input.type === 'checkbox') {
+					formData[input.name] = input.checked;
+			} else if (input.type === 'radio') {
+					if (input.checked) {
+							formData[input.name] = input.value;
+					}
 			} else {
-				alert(`Error: ${data.data}`)
+					formData[input.name] = input.value;
 			}
-		})
 	});
-}
+
+
+	const data = new URLSearchParams({
+		action: 'form_review',
+		security: ajaxData.nonceReviewForm,
+		id: id,
+		rating,
+		...formData
+	})
+	console.log(formData)
+
+	fetch(ajaxData.ajaxUrl, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: data.toString(),
+	})
+	.then(response => response.json())
+	.then(data => {
+		if(data.success) {
+			alert('Your review has been added')
+		} else {
+			alert(`Error: ${data.data}`)
+		}
+	})
+});
+
+
+
+
+
+
 

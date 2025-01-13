@@ -84,11 +84,17 @@ require_once('inc/get-permalink-by-slug.php')
 										</div>
 										<div class="product-item__footer">
 											<div class="flex items-center justify-between gap-4">
-												<a href="#compare" id='send-request' data-id-product='<?= $product_id ?>' data-request-html='true' data-target-section='.section-compare' class="button button-size-l button-tinted">
+												<!-- <a href="#compare" class="compare-btn" id='send-request' data-id-product='<?= $product_id ?>' data-request-html='true' data-target-section='.section-compare' class="button button-size-l button-tinted">
 													<span>
 														Compare
 													</span>
-												</a>
+												</a> -->
+
+												<button type="button" id='send-request' data-id-product='<?= $product_id ?>' data-request-html='true' data-target-section='.section-compare' data-redirect="<?= esc_url(home_url('/products/#compare')) ?>" class="button button-size-l button-tinted compare-btn-products">
+													<span>
+														Compare
+													</span>
+												</button>
 												<a href="<?= get_permalink_by_slug('contacts') ?>" class="button button-size-l button-primary">
 													<span>
 														Contact Us
@@ -111,7 +117,9 @@ require_once('inc/get-permalink-by-slug.php')
 	<!-- /.page-section -->
 	<div class="jumpscroll"></div>
 
-	<?php get_template_part('template-parts/compare',) ?>
+	<div class="lg:py-20 md:py-16 py-10">
+		<?php get_template_part('template-parts/compare',) ?>
+	</div>
 	<!-- /.section-compare -->
 	<?php get_template_part('template-parts/cta',) ?>
 	<!-- /.cta-section -->
